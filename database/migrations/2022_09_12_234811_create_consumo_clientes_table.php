@@ -15,7 +15,7 @@ class CreateConsumoClientesTable extends Migration
     {
         Schema::create('consumo_clientes', function (Blueprint $table) {
             $table->id();
-            $table->decimal('valotTotal', 8, 2);
+            $table->decimal('valorTotal', 8, 2);
             $table->integer('id_cliente');
             $table->timestamps();
         });

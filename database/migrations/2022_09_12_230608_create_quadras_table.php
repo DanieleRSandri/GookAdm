@@ -17,7 +17,7 @@ class CreateQuadrasTable extends Migration
             $table->id();
             $table->string('nome',100);
             $table->string('tipo',100);
-            $table->timestamp('tempoPartida');
+            $table->time('tempoPartida');
             $table->decimal('valorTempo', 8, 2);
             $table->integer('id_local');
             $table->timestamps();
