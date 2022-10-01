@@ -9,6 +9,11 @@ class QuadrasController extends Controller
 {
     public function index(){
         $quadras = Quadra::All();
-        return view('quadras', ['quadras'=>$quadras]);
+        return view('quadras.index', ['quadras'=>$quadras]);
+    }
+
+    
+    public function create(){
+        return view('quadras.create');
     }
 }

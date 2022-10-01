@@ -9,6 +9,10 @@ class AgendasController extends Controller
 {
     public function index(){
         $agendas = Agenda::All();
-        return view('agendas', ['agendas'=>$agendas]);
+        return view('agendas.index', ['agendas'=>$agendas]);
+    }
+
+    public function create(){
+        return view('agendas.create');
     }
 }

@@ -9,6 +9,10 @@ class ClientesController extends Controller
 {
     public function index(){
         $clientes = Cliente::All();
-        return view('clientes', ['clientes'=>$clientes]);
+        return view('clientes.index', ['clientes'=>$clientes]);
+    }
+
+    public function create(){
+        return view('clientes.create');
     }
 }

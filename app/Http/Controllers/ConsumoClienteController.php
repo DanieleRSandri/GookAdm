@@ -9,6 +9,10 @@ class ConsumoClienteController extends Controller
 {
     public function index(){
         $consumoClientes = ConsumoCliente::All();
-        return view('consumoCliente', ['consumoCliente'=>$consumoClientes]);
+        return view('consumoCliente.index', ['consumoCliente'=>$consumoClientes]);
+    }
+
+    public function create(){
+        return view('consumoCliente.create');
     }
 }

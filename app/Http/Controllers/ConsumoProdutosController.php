@@ -9,6 +9,11 @@ class ConsumoProdutosController extends Controller
 {
     public function index(){
         $consumoProdutos = ConsumoProduto::All();
-        return view('consumoProduto', ['consumoProduto'=>$consumoProdutos]);
+        return view('consumoProduto.index', ['consumoProduto'=>$consumoProdutos]);
+    }
+
+    
+    public function create(){
+        return view('consumoProduto.create');
     }
 }
