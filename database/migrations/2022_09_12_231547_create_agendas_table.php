@@ -18,7 +18,6 @@ class CreateAgendasTable extends Migration
             $table->time('horario');
             $table->string('status',50);
             $table->date('data');
-            $table->integer('id_usuario');
             $table->integer('id_cliente');
             $table->integer('id_quadra');
             $table->timestamps();

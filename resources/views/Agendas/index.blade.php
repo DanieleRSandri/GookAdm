@@ -1,7 +1,7 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<h3>Listagem de Clientes</h3>
+<h3>Listagem de Agendamentos</h3>
 <table class="table table-stripe table-bordered table-hover">
     <thead>
         <th>Data</th>
@@ -24,5 +24,9 @@
 
     </tbody>
 </table>
+
+<div class="form-group" >
+    <a class="btn btn-outline-primary" href="{{ route('agendas.criar') }}">Novo Agendamento</a>
+    </div>
 
 @stop

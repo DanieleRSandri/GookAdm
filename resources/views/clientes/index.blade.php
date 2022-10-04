@@ -21,5 +21,8 @@
         @endforeach
     </tbody>
 </table>
+<div class="form-group" >
+    <a class="btn btn-outline-primary" href="{{ route('clientes.criar') }}">Novo Cliente</a>
+    </div>
 
 @stop

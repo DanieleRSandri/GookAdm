@@ -24,5 +24,5 @@
 
     </tbody>
 </table>
-
+<a class="btn btn-outline-primary" href="{{ route('quadras.criar') }}">Novo Quadra</a>
 @stop

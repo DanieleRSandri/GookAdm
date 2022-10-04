@@ -24,8 +24,9 @@
         </div>
         
         <div class="form-group">
-        {!! Form::submit('Criar Local', ['class'=>'btn btn-primary']) !!}
-        {!! Form::reset('Limpar',['class'=>'btn btn-default']) !!}
+        {!! Form::submit('Criar Local', ['class'=>'btn btn-outline-success']) !!}
+        {!! Form::reset('Limpar',['class'=>'btn btn-outline-secondary']) !!}
+        <a class="btn btn-outline-danger" href="{{ route('locais.listar') }}">Voltar</a>
         </div>
 
     {!! Form::close() !!}

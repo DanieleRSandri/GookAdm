@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cliente;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\ClienteRequest;
 
 class ClientesController extends Controller
 {
@@ -14,5 +13,12 @@ class ClientesController extends Controller
 
     public function create(){
         return view('clientes.create');
+    }
+
+    public function store(ClienteRequest $request){
+        $novo_cliente = $request->all();
+        Cliente::create($novo_cliente);
+
+        return redirect('clientes');
     }
 }
