@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="text-align:center">
-    <h4>Nova Quadra</h4>
+    <h4>Editando Quadra: {{ $quadra->descricao }}</h4>
 </div> 
     @if ($errors->any())
         <ul class='alert alert-danger'>
@@ -13,35 +13,35 @@
         </ul>
     @endif
 
-    {!! Form::open(['url' => 'quadras/store']) !!}
+    {!! Form::open(['url'=>"quadras/$quadra->id/update", 'method'=>'put']) !!}
 
     <div class="form-group">
         {!! Form::label('nome', 'Nome:') !!}
-        {!! Form::text('nome', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('nome', $quadra->nome, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('tipo', 'Tipo Quadra:') !!}
-        {!! Form::text('tipo', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('tipo', $quadra->tipo, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('tempoPartida', 'Tempo Partida:') !!}
-        {!! Form::text('tempoPartida', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('tempoPartida', $quadra->tempoPartida, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('valorTempo', 'Valor Tempo:') !!}
-        {!! Form::text('valorTempo', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('valorTempo', $quadra->valorTempo, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('id_local', 'Local:') !!}
-        {!! Form::text('id_local', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('id_local', $quadra->id_local, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group" style="text-align:center">
-        {!! Form::submit('Criar Quadra', ['class' => 'btn btn-outline-success']) !!}
+        {!! Form::submit('Editar Quadra', ['class' => 'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar', ['class' => 'btn btn-outline-secondary']) !!}
         <a class="btn btn-outline-danger" href="{{ route('quadras') }}">Voltar</a>
     </div>

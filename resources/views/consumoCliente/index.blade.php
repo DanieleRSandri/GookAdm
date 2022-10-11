@@ -1,8 +1,11 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<h3>Listagem de consumo de Clientes</h3>
-<table class="table table-stripe table-bordered table-hover">
+<div style="text-align:center">
+    <h4>Consumo de Clientes</h4>
+</div>
+
+<table class="table table-striped">
     <thead>
         <th>Valor Total</th>
         <th>Cliente</th>
@@ -17,5 +20,9 @@
         @endforeach
     </tbody>
 </table>
+
+<div class="form-group"  style="text-align:center">
+    <a class="btn btn-outline-primary" href="{{ route('consumoClientes.criar') }}">Novo Consumo</a>
+    </div>
 
 @stop

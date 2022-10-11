@@ -23,4 +23,19 @@ class ProdutosController extends Controller
 
         return redirect('produtos');
     }
+
+    public function destroy($id){
+        Produto::find($id)->delete();
+        return redirect('produtos');
+    }
+
+    public function edit($id){
+        $produto = Produto::find($id);
+        return view('produtos.edit', compact('produto'));
+    }
+    
+    public function update(ProdutoRequest $request, $id){
+        Produto::find($id)->update($request->all());
+        return redirect('produtos');
+    }
 }

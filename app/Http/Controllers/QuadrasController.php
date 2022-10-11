@@ -24,4 +24,19 @@ class QuadrasController extends Controller
 
         return redirect('quadras');
     }
+
+    public function destroy($id){
+        Quadra::find($id)->delete();
+        return redirect('quadras');
+    }
+
+    public function edit($id){
+        $quadra = Quadra::find($id);
+        return view('quadras.edit', compact('quadra'));
+    }
+    
+    public function update(QuadraRequest $request, $id){
+        Quadra::find($id)->update($request->all());
+        return redirect('quadras');
+    }
 }

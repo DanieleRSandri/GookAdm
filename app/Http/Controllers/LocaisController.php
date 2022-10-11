@@ -21,6 +21,22 @@ class LocaisController extends Controller
         $novo_local = $request->all();
         Locais::create($novo_local);
 
-        return redirect('locais');
+        return redirect()->route('locais');
     }
+
+    public function destroy($id){
+        Locais::find($id)->delete();
+        return redirect()->route('locais');
+    }
+
+    public function edit($id){
+        $local = Locais::find($id);
+        return view('locais.edit', compact('local'));
+    }
+    
+    public function update(LocalRequest $request, $id){
+        Locais::find($id)->update($request->all());
+        return redirect()->route('locais');
+    }
+
 }

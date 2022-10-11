@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="text-align:center">
-    <h4>Novo Local</h4>
+    <h4>Novo Consumo</h4>
 </div>
     @if($errors->any())
         <ul class='alert alert-danger'>
@@ -13,7 +13,7 @@
         </ul>
     @endif
 
-    {!! Form::open(['route'=>'locais.store']) !!}
+    {!! Form::open(['url'=>'consumoClientes/store']) !!}
 
         <div class="form-group">
         {!! Form::label('nome', 'Nome') !!}
@@ -28,7 +28,7 @@
         <div class="form-group" style="text-align:center">
         {!! Form::submit('Criar Local', ['class'=>'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar',['class'=>'btn btn-outline-secondary']) !!}
-        <a class="btn btn-outline-danger" href="{{ route('locais') }}">Voltar</a>
+        <a class="btn btn-outline-danger" href="{{ route('consumoClientes.listar') }}">Voltar</a>
         </div>
 
     {!! Form::close() !!}

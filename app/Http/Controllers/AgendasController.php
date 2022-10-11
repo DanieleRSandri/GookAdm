@@ -24,4 +24,19 @@ class AgendasController extends Controller
 
         return redirect('agendas');
     }
+
+    public function destroy($id){
+        Agenda::find($id)->delete();
+        return redirect('agendas');
+    }
+
+    public function edit($id){
+        $agenda = Agenda::find($id);
+        return view('agendas.edit', compact('agenda'));
+    }
+    
+    public function update(AgendaRequest $request, $id){
+        Agenda::find($id)->update($request->all());
+        return redirect('locagendasais');
+    }
 }

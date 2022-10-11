@@ -1,28 +1,38 @@
-﻿@extends('adminlte::page')
-
+﻿@extends('layouts.default')
 @section('content')
-<h3>Listagem de Quadras</h3>
-<table class="table table-stripe table-bordered table-hover">
-    <thead>
-    <th>Nome</th>
+       <h4>Listagem de Quadras</h4>
+    <table class="table table-striped">
+        <thead>
+            <th>Nome</th>
             <th>Tipo</th>
             <th>Tempo de Partida</th>
             <th>Valor do Tempo</th>
             <th>Local</th>
-    </thead>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            @foreach ($quadras as $quadra)
+                <tr>
+                    <td>{{ $quadra->nome }}</td>
+                    <td>{{ $quadra->tipo }}</td>
+                    <td>{{ Carbon\Carbon::parse($quadra->tempoPartida)->format('h:i') }}</td>
+                    <td>{{ $quadra->valorTempo }}</td>
+                    <td>{{ $quadra->id_local }}</td>
+                    <td>
+                        <a href="{{ route('quadras.edit', ['id' => $quadra->id]) }}" class="btn btn-outline-success">Editar</a>
+                        <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
+                            class="btn btn-outline-danger">Remover</a>
+                    </td>
+                    </td>
+                </tr>
+            @endforeach
 
-    <tbody>
-    @foreach($quadras as $quadra)
-        <tr>
-            <td>{{ $quadra->nome}}</td>
-            <td>{{ $quadra->tipo}}</td>
-            <td>{{ $quadra->tempoPartida}}</td>
-            <td>{{ $quadra->valorTempo}}</td>
-            <td>{{ $quadra->id_local}}</td>
-        </tr>
-        @endforeach
-
-    </tbody>
-</table>
-<a class="btn btn-outline-primary" href="{{ route('quadras.criar') }}">Novo Quadra</a>
+        </tbody>
+    </table>
+    <div class="form-group" style="text-align:center">
+        <a class="btn btn-outline-primary" href="{{ route('quadras.create') }}">Nova Quadra</a>
+    </div>
 @stop
+@section('table-delete')
+    "quadras"
+@endsection
