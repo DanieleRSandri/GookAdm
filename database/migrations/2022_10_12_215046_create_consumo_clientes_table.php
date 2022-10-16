@@ -14,9 +14,10 @@ class CreateConsumoClientesTable extends Migration
     public function up()
     {
         Schema::create('consumo_clientes', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->decimal('valorTotal', 8, 2);
-            $table->integer('id_cliente');
+            $table->bigInteger('id_cliente')->unsigned()->nullable();
+            $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->timestamps();
         });
     }

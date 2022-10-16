@@ -22,7 +22,7 @@
 </table>
 
 <div class="form-group"  style="text-align:center">
-    <a class="btn btn-outline-primary" href="{{ route('consumoClientes.criar') }}">Novo Consumo</a>
+    <a class="btn btn-outline-primary" href="{{ route('consumoClientes') }}">Novo Consumo</a>
     </div>
 
 @stop

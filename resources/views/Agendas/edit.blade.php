@@ -1,7 +1,7 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-    <h4> Novo Agendamento</h4>
+    <h4>Editando Agendamento:</h4>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -11,15 +11,15 @@
         </ul>
     @endif
 
-    {!! Form::open(['url' => 'agendas/store']) !!}
+    {!! Form::open(['url'=>"agendas/$agenda->id/update", 'method'=>'put']) !!}
     <div class="form-group">
         {!! Form::label('data', 'Data') !!}
-        {!! Form::date('data', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::date('data', $agenda->data, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('horario', 'Horario') !!}
-        {!! Form::text('horario', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('horario', $agenda->horario, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
@@ -28,21 +28,24 @@
                             array('Disponivel'=>'Disponivel',
                                 'Agendado'=> 'Agendado',
                                 'Cancelado'=> 'Cancelado'),
-                            'Disponivel',['class'=>'form-control', 'require']) !!}
+                                $agenda->status,['class'=>'form-control', 'require']) !!}
         </div>
+
 
     <div class="form-group">
         {!! Form::label('id_quadra', 'Quadra:') !!}
-        {!! Form::select('id_quadra',\App\Models\Quadra::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'required']) !!}
+        {!! Form::select('id_quadra',\App\Models\Quadra::orderBy('nome')->pluck('nome', 'id')->toArray(), $agenda->id_quadra ,['class' => 'form-control', 'required']) !!}
     </div>
+ 
 
     <div class="form-group">
         {!! Form::label('id_cliente', 'Cliente:') !!}
-        {!! Form::select('id_cliente',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control']) !!}
+        {!! Form::select('id_quadra',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(), $agenda->id_cliente ,['class' => 'form-control', 'required']) !!}
+  
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Criar Agendamento', ['class' => 'btn btn-outline-success']) !!}
+        {!! Form::submit('Editar Agendamento', ['class' => 'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar', ['class' => 'btn btn-outline-secondary']) !!}
         <a class="btn btn-outline-danger" href="{{ route('agendas') }}">Voltar</a>
     </div>

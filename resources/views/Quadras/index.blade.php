@@ -1,6 +1,9 @@
 ﻿@extends('layouts.default')
 @section('content')
-       <h4>Listagem de Quadras</h4>
+    <div style="text-align:center">
+        <h4>Listagem de Quadras</h4>
+    </div>
+    
     <table class="table table-striped">
         <thead>
             <th>Nome</th>
@@ -17,12 +20,12 @@
                     <td>{{ $quadra->tipo }}</td>
                     <td>{{ Carbon\Carbon::parse($quadra->tempoPartida)->format('h:i') }}</td>
                     <td>{{ $quadra->valorTempo }}</td>
-                    <td>{{ $quadra->id_local }}</td>
+                    <td>{{ $quadra->local->nome}}</td>
                     <td>
-                        <a href="{{ route('quadras.edit', ['id' => $quadra->id]) }}" class="btn btn-outline-success">Editar</a>
+                        <a href="{{ route('quadras.edit', ['id' => $quadra->id]) }}"
+                            class="btn btn-outline-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
                             class="btn btn-outline-danger">Remover</a>
-                    </td>
                     </td>
                 </tr>
             @endforeach

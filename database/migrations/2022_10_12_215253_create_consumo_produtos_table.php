@@ -14,10 +14,12 @@ class CreateConsumoProdutosTable extends Migration
     public function up()
     {
         Schema::create('consumo_produtos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('quantidade');
-            $table->integer('id_produto');
-            $table->integer('id_consumo');
+            $table->bigInteger('id_produto')->unsigned()->nullable();
+            $table->foreign('id_produto')->references('id')->on('produtos');
+            $table->bigInteger('id_consumo')->unsigned()->nullable();
+            $table->foreign('id_consumo')->references('id')->on('consumo_clientes');
             $table->timestamps();
         });
     }

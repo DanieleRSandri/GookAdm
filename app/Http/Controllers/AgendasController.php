@@ -37,6 +37,6 @@ class AgendasController extends Controller
     
     public function update(AgendaRequest $request, $id){
         Agenda::find($id)->update($request->all());
-        return redirect('locagendasais');
+        return redirect('agendas');
     }
 }

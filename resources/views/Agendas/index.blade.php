@@ -9,24 +9,34 @@
         <th>Status</th>
         <th>Quadra</th>
         <th>Cliente</th>
+        <th>Ações</th>
     </thead>
 
     <tbody>
     @foreach($agendas as $agendamento)
         <tr>
-            <td>{{ $agendamento->data}}</td>
-            <td>{{ $agendamento->horario}}</td>
+            <td>{{ Carbon\Carbon::parse($agendamento->data)->format('d-m-Y') }}</td>
+            <td>{{ Carbon\Carbon::parse($agendamento->horario)->format('h:i') }}</td>
             <td>{{ $agendamento->status}}</td>
-            <td>{{ $agendamento->id_quadra}}</td>
-            <td>{{ $agendamento->id_cliente}}</td>
+            <td>{{ $agendamento->quadra->nome }}</td>
+            <td>{{ $agendamento->cliente->nome}}</td>
+
+
+            
+            <td>
+                <a href="{{ route('agendas.edit', ['id' => $agendamento->id]) }}"
+                    class="btn btn-outline-success">Editar</a>
+                    <a href="{{ route('agendas.destroy', ['id' => $agendamento->id]) }}"
+                    class="btn btn-outline-danger">Remover</a>
+            </td>
         </tr>
         @endforeach
 
     </tbody>
 </table>
 
-<div class="form-group" >
-    <a class="btn btn-outline-primary" href="{{ route('agendas.criar') }}">Novo Agendamento</a>
+<div class="form-group" style="text-align:center" >
+    <a class="btn btn-outline-primary" href="{{ route('agendas.create') }}">Novo Agendamento</a>
     </div>
 
 @stop

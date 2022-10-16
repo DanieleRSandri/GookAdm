@@ -12,6 +12,7 @@
             <th>CPF</th>
             <th>Telefone</th>
             <th>Endereço</th>
+            <th>Ações</th>
         </thead>
 
         <tbody>
@@ -21,12 +22,18 @@
                     <td>{{ $cliente->cpf }}</td>
                     <td>{{ $cliente->telefone }}</td>
                     <td>{{ $cliente->endereco }}</td>
+                    <td>
+                        <a href="{{ route('clientes.edit', ['id' => $cliente->id]) }}"
+                            class="btn btn-outline-success">Editar</a>
+                            <a href="{{ route('clientes.destroy', ['id' => $cliente->id]) }}"
+                            class="btn btn-outline-danger">Remover</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     <div class="form-group" style="text-align:center">
-        <a class="btn btn-outline-primary" href="{{ route('clientes.criar') }}">Novo Cliente</a>
+        <a class="btn btn-outline-primary" href="{{ route('clientes.create') }}">Novo Cliente</a>
     </div>
 
 @stop

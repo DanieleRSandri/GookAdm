@@ -314,6 +314,12 @@ return [
             'url'  => 'http://127.0.0.1:8000/locais',
             'icon' => 'fas fa-fw fa-users',
         ],
+        ['header' => 'Usuarios'],
+        [
+            'text' => 'Listagem',
+            'url'  => 'http://127.0.0.1:8000/usuarios',
+            'icon' => 'fas fa-fw fa-users',
+        ],
         ['header' => 'Produtos'],
         [
             'text' => 'Listagem',

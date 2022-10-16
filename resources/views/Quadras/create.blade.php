@@ -37,7 +37,7 @@
 
     <div class="form-group">
         {!! Form::label('id_local', 'Local:') !!}
-        {!! Form::text('id_local', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::select('id_local',\App\Models\Locais::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'required']) !!}
     </div>
 
     <div class="form-group" style="text-align:center">

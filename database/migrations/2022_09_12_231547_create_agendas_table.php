@@ -14,12 +14,14 @@ class CreateAgendasTable extends Migration
     public function up()
     {
         Schema::create('agendas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->time('horario');
             $table->string('status',50);
             $table->date('data');
-            $table->integer('id_cliente');
-            $table->integer('id_quadra');
+            $table->bigInteger('id_cliente')->unsigned()->nullable();
+            $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->bigInteger('id_quadra')->unsigned()->nullable();
+            $table->foreign('id_quadra')->references('id')->on('quadras');
             $table->timestamps();
         });
     }
