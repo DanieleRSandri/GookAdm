@@ -2,6 +2,7 @@
 
 @section('content')
     <h4> Novo Agendamento</h4>
+
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -18,8 +19,13 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('horario', 'Horario') !!}
-        {!! Form::text('horario', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::label('horario_inicio', 'Horario inicial:') !!}
+        {!! Form::text('horario_inicio', null, ['class' => 'form-control', 'require']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('horario_final', 'Horario Final:') !!}
+        {!! Form::text('horario_final', null, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
@@ -30,7 +36,7 @@
                                 'Cancelado'=> 'Cancelado'),
                             'Disponivel',['class'=>'form-control', 'require']) !!}
         </div>
-
+        
     <div class="form-group">
         {!! Form::label('id_quadra', 'Quadra:') !!}
         {!! Form::select('id_quadra',\App\Models\Quadra::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'required']) !!}
@@ -38,7 +44,7 @@
 
     <div class="form-group">
         {!! Form::label('id_cliente', 'Cliente:') !!}
-        {!! Form::select('id_cliente',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control']) !!}
+        {!! Form::select('id_cliente',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'placeholder' => 'Selecione um cliente']) !!}
     </div>
 
     <div class="form-group">

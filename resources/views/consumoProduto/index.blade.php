@@ -1,24 +1,37 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<h3>Listagem de Consumo Produtos</h3>
-<table class="table table-stripe table-bordered table-hover">
+<div style="text-align:center">
+    <h4>Consumo de Produtos</h4>
+</div>
+
+<table class="table table-striped">
     <thead>
-            <th>Produto</th>
-            <th>Quantidade</th>
-            <th>Consumo</th>
+        <th>Quantidade</th>
+        <th>Produto</th>
+        <th>Consumo</th>
+        <th>Ações</th>
     </thead>
 
     <tbody>
     @foreach($consumoProduto as $consumo)
         <tr>
-            <td>{{ $consumo->id_produto}}</td>
             <td>{{ $consumo->quantidade}}</td>
-            <td>{{ $consumo->id_consumo}}</td>
+            <td>{{ $consumo->produto->descricao}}</td>
+            <td>{{ $consumo->consumo->id}}</td>
+            <td>
+                <a href="{{ route('consumoProdutos.edit', ['id' => $consumo->id]) }}"
+                    class="btn btn-outline-success">Editar</a>
+                    <a href="{{ route('consumoProdutos.destroy', ['id' => $consumo->id]) }}"
+                    class="btn btn-outline-danger">Remover</a>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
-@stop
+<div class="form-group"  style="text-align:center">
+    <a class="btn btn-outline-primary" href="{{ route('consumoProdutos.create') }}">Novo Consumo</a>
+    </div>
 
+@stop

@@ -15,14 +15,14 @@
     @foreach($consumoCliente as $consumo)
         <tr>
             <td>{{ $consumo->valorTotal}}</td>
-            <td>{{ $consumo->id_cliente}}</td>
+            <td>{{ $consumo->cliente->nome}}</td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
 <div class="form-group"  style="text-align:center">
-    <a class="btn btn-outline-primary" href="{{ route('consumoClientes') }}">Novo Consumo</a>
+    <a class="btn btn-outline-primary" href="{{ route('consumoClientes.create') }}">Novo Consumo</a>
     </div>
 
 @stop

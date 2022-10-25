@@ -26,7 +26,6 @@ class QuadraRequest extends FormRequest
         return [
             'nome' => 'required|min:5',
             'tipo' => 'required|min:5',
-            'tempoPartida' => 'required',
             'valorTempo' =>'required',
             'id_local' =>'required',
         ];

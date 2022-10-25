@@ -73,13 +73,13 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('store',      ['as'=>'consumoClientes.store',    'uses'=>'App\Http\Controllers\ConsumoClienteController@store']);
     });
     
-    Route::group(['prefix'=>'consumoProduto', 'where'=>['id'=>'[0-9]+']], function() {
-        Route::get('',            ['as'=>'consumoProduto',          'uses'=>'App\Http\Controllers\ConsumoProdutosController@index']);
-        Route::get('create',      ['as'=>'consumoProduto.create',    'uses'=>'App\Http\Controllers\ConsumoProdutosController@create']);
-        Route::get('{id}/destroy',['as'=>'consumoProduto.destroy',  'uses'=>'App\Http\Controllers\ConsumoProdutosController@destroy']);
-        Route::get('{id}/edit',   ['as'=>'consumoProduto.edit',     'uses'=>'App\Http\Controllers\ConsumoProdutosController@edit']);
-        Route::put('{id}/update', ['as'=>'consumoProduto.update',   'uses'=>'App\Http\Controllers\ConsumoProdutosController@update']);
-        Route::post('store',      ['as'=>'consumoProduto.store',    'uses'=>'App\Http\Controllers\ConsumoProdutosController@store']);
+    Route::group(['prefix'=>'consumoProdutos', 'where'=>['id'=>'[0-9]+']], function() {
+        Route::get('',            ['as'=>'consumoProdutos',          'uses'=>'App\Http\Controllers\ConsumoProdutoController@index']);
+        Route::get('create',      ['as'=>'consumoProdutos.create',    'uses'=>'App\Http\Controllers\ConsumoProdutoController@create']);
+        Route::get('{id}/destroy',['as'=>'consumoProdutos.destroy',  'uses'=>'App\Http\Controllers\ConsumoProdutoController@destroy']);
+        Route::get('{id}/edit',   ['as'=>'consumoProdutos.edit',     'uses'=>'App\Http\Controllers\ConsumoProdutoController@edit']);
+        Route::put('{id}/update', ['as'=>'consumoProdutos.update',   'uses'=>'App\Http\Controllers\ConsumoProdutoController@update']);
+        Route::post('store',      ['as'=>'consumoProdutos.store',    'uses'=>'App\Http\Controllers\ConsumoProdutoController@store']);
     });
 
 });

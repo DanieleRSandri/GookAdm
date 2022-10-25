@@ -1,42 +1,64 @@
 ﻿@extends('adminlte::page')
-
+@section('plugins.fullcalendar', true)
 @section('content')
-<h3>Listagem de Agendamentos</h3>
-<table class="table table-stripe table-bordered table-hover">
-    <thead>
-        <th>Data</th>
-        <th>Horário</th>
-        <th>Status</th>
-        <th>Quadra</th>
-        <th>Cliente</th>
-        <th>Ações</th>
-    </thead>
+    <h1 style="padding-top: 15px; text-align: center">Agendamentos</h1>
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script src='fullcalendar/main.js'></script>
+    <script src='fullcalendar/locales/pt-br.js'></script>
+    <script>
+        function getColor($status) {
+            $eventColor = '';
+            if ($status == 'Disponivel') {
+                $eventColor = '#006400';
+            } else if ($status == 'Agendado') {
+                $eventColor = '#ff0';
+            } else {
+                $eventColor = '#FF0000';
+            }
+            return $eventColor;
+        }
 
-    <tbody>
-    @foreach($agendas as $agendamento)
-        <tr>
-            <td>{{ Carbon\Carbon::parse($agendamento->data)->format('d-m-Y') }}</td>
-            <td>{{ Carbon\Carbon::parse($agendamento->horario)->format('h:i') }}</td>
-            <td>{{ $agendamento->status}}</td>
-            <td>{{ $agendamento->quadra->nome }}</td>
-            <td>{{ $agendamento->cliente->nome}}</td>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'pt-br',
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                customButtons: {
+                    novo: {
+                        text: 'Novo Agendamento',
+                        click: function() {
+                            window.location.href = ("http://127.0.0.1:8000/agendas/create");
+                        }
+                    }
+                },
+                events: [
+                    @foreach ($agendas as $agendas)
+                        {
+                            title: '{{ $agendas->status }}',
+                            start: '{{ $agendas->inicio }}',
+                            end: '{{ $agendas->final }}',
+                            color: getColor('{{ $agendas->status }}')
 
+                        },
+                    @endforeach
 
-            
-            <td>
-                <a href="{{ route('agendas.edit', ['id' => $agendamento->id]) }}"
-                    class="btn btn-outline-success">Editar</a>
-                    <a href="{{ route('agendas.destroy', ['id' => $agendamento->id]) }}"
-                    class="btn btn-outline-danger">Remover</a>
-            </td>
-        </tr>
-        @endforeach
+                ],
+                  eventClick: function(event) {
 
-    </tbody>
-</table>
+    window.location.href = ("http://127.0.0.1:8000/agendas/1/edit");
+ 
+  }
 
-<div class="form-group" style="text-align:center" >
-    <a class="btn btn-outline-primary" href="{{ route('agendas.create') }}">Novo Agendamento</a>
-    </div>
+            });
+            calendar.render();
+        });
+    </script>
+    <div id='calendar'></div>
+
 
 @stop

@@ -9,7 +9,7 @@ class Agenda extends Model
 {
     use HasFactory;
     protected $table = 'agendas';
-    protected $fillable = ['data','status','horario','id_quadra','id_cliente'];
+    protected $fillable = ['data','status','horario_inicio','horario_final','id_quadra','id_cliente'];
 
     public function quadra(){
         return $this->belongsTo("App\Models\Quadra",'id_quadra');
@@ -18,4 +18,5 @@ class Agenda extends Model
     public function cliente(){
         return $this->belongsTo("App\Models\Cliente",'id_cliente');
     }
+
 }

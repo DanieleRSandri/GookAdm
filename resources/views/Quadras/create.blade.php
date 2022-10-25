@@ -26,11 +26,6 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('tempoPartida', 'Tempo Partida:') !!}
-        {!! Form::text('tempoPartida', null, ['class' => 'form-control', 'require']) !!}
-    </div>
-
-    <div class="form-group">
         {!! Form::label('valorTempo', 'Valor Tempo:') !!}
         {!! Form::text('valorTempo', null, ['class' => 'form-control', 'require']) !!}
     </div>

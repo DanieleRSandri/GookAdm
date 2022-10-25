@@ -17,7 +17,6 @@ class CreateQuadrasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome',100);
             $table->string('tipo',100);
-            $table->time('tempoPartida');
             $table->decimal('valorTempo', 8, 2);
             $table->bigInteger('id_local')->unsigned()->nullable();
             $table->foreign('id_local')->references('id')->on('locais');

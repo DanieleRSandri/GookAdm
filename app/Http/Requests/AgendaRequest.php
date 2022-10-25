@@ -26,8 +26,9 @@ class AgendaRequest extends FormRequest
         return [
             'data' => 'required|date',
             'status' => 'required',
-            'horario'=> 'required',
-            'id_quadra'=> 'required',
+            'horario_inicio'=> 'required',
+            'horario_final'=> 'required',
+            'id_quadra'=> 'required'
         ];
     }
 }

@@ -335,7 +335,7 @@ return [
         ['header' => 'Consumo Produto'],
         [
             'text' => 'Listagem',
-            'url'  => 'http://127.0.0.1:8000/consumoProduto',
+            'url'  => 'http://127.0.0.1:8000/consumoProdutos',
             'icon' => 'fas fa-fw fa-users',
         ],
        

@@ -22,6 +22,8 @@ class CreateConsumoProdutosTable extends Migration
             $table->foreign('id_consumo')->references('id')->on('consumo_clientes');
             $table->timestamps();
         });
+
+       
     }
 
     /**

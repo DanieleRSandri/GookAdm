@@ -15,7 +15,8 @@ class CreateAgendasTable extends Migration
     {
         Schema::create('agendas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->time('horario');
+            $table->time('horario_inicio');
+            $table->time('horario_final');
             $table->string('status',50);
             $table->date('data');
             $table->bigInteger('id_cliente')->unsigned()->nullable();

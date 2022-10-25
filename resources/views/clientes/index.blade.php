@@ -32,6 +32,7 @@
             @endforeach
         </tbody>
     </table>
+    {{ $clientes->links("pagination::bootstrap-4") }}
     <div class="form-group" style="text-align:center">
         <a class="btn btn-outline-primary" href="{{ route('clientes.create') }}">Novo Cliente</a>
     </div>

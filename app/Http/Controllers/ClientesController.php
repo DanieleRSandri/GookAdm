@@ -7,7 +7,7 @@ use App\Http\Requests\ClienteRequest;
 class ClientesController extends Controller
 {
     public function index(){
-        $clientes = Cliente::All();
+        $clientes = Cliente::orderBy('nome')->paginate(5);
         return view('clientes.index', ['clientes'=>$clientes]);
     }
 
