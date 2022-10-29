@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgendaRequest;
 use App\Models\Agenda;
-
-use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AgendasController extends Controller
 {
-    // public function index(){
-    //     $agendas = Agenda::All();
-    //     return view('agendas.index', ['agendas'=>$agendas]);
-    // }
+   
+    public function geraPdf(){
+         $agendas = Agenda::All();
+        //  dd($agendas);
+         
+        $pdf = PDF::loadView('pdf/agenda',compact('agendas'));
+     return $pdf->setPaper('a4')->download('Lista_Agendamento.pdf');
+      }
     
     public function VerificaHoraria($data, $horaInicial, $horaFinal) {
         $horario = Agenda::where("data", $data)->where('status', 'Agendado')->orWhere('status', 'Disponivel');
@@ -31,10 +34,15 @@ class AgendasController extends Controller
     }
 
 
-    public function index()
-    {
-        $agendas = Agenda::select(Agenda::raw("*,DATE_FORMAT(horario_inicio, '%Y-%m-%dT%H:%i:%s') as 'inicio',DATE_FORMAT(horario_final, '%Y-%m-%dT%H:%i:%s') as 'final',status,id"))->get();
-        return view('agendas.index', ['agendas' => $agendas]);
+    // public function index()
+    // {
+    //     $agendas = Agenda::select(Agenda::raw("*"))->get();
+    //     return view('agendas.index', ['agendas' => $agendas]);
+    // }
+
+     public function index(){
+        $agendas = Agenda::All();
+        return view('agendas.index', ['agendas'=>$agendas]);
     }
 
     public function create(){
@@ -44,9 +52,9 @@ class AgendasController extends Controller
     public function store(AgendaRequest $request){
         $novo_agendamento = $request->all();
 
-        if ($this->VerificaHoraria($novo_agendamento['data'], $novo_agendamento['horario_inicio'], $novo_agendamento['horario_final']))
+       // if ($this->VerificaHoraria($novo_agendamento['data'], $novo_agendamento['horario_inicio'], $novo_agendamento['horario_final']))
             Agenda::create($novo_agendamento);
-  
+            return redirect('agendas');
     }
 
     public function destroy($id){

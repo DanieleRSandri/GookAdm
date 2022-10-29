@@ -18,8 +18,13 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('horario', 'Horario') !!}
-        {!! Form::text('horario', $agenda->horario, ['class' => 'form-control', 'require']) !!}
+        {!! Form::label('horario_inicio', 'Horario') !!}
+        {!! Form::text('horario_inicio', $agenda->horario_inicio, ['class' => 'form-control', 'require']) !!}
+    </div>
+
+    <div class="form-group">
+        {!! Form::label('horario_final', 'Horario') !!}
+        {!! Form::text('horario_final', $agenda->horario_final, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
@@ -44,10 +49,10 @@
   
     </div>
 
-    <div class="form-group">
+    <div class="form-group" style="text-align:center" >
         {!! Form::submit('Editar Agendamento', ['class' => 'btn btn-outline-success']) !!}
-        {!! Form::reset('Limpar', ['class' => 'btn btn-outline-secondary']) !!}
-        <a class="btn btn-outline-danger" href="{{ route('agendas') }}">Voltar</a>
+          <a class="btn btn-outline-secondary" href="{{ route('agendas') }}">Voltar</a>
+        
     </div>
 
     {!! Form::close() !!}

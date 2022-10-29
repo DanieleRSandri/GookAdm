@@ -32,7 +32,7 @@ class ConsumoClienteController extends Controller
 
     public function edit($id){
         $consumoClientes = ConsumoCliente::find($id);
-        return view('consumoClientes.edit', compact('consumoClientes'));
+        return view('consumoCliente.edit', compact('consumoClientes'));
     }
     
     public function update(ConsumoClienteRequest $request, $id){

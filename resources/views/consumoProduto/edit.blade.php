@@ -28,7 +28,7 @@
 
         <div class="form-group">
         {!! Form::label('quantidade', 'Quantidade:') !!}
-        {!! Form::text('quantidade',$agenda->quantidade,['class'=>'form-control', 'require']) !!}
+        {!! Form::text('quantidade',$consumoProdutos->quantidade,['class'=>'form-control', 'require']) !!}
         </div>
 
     

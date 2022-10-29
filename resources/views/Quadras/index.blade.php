@@ -1,5 +1,6 @@
-﻿{{-- @extends('adminlte::page') --}}
+﻿{{-- @extends('layouts.default') --}}
 @extends('adminlte::page')
+
 
 @section('content')
     <div style="text-align:center">
@@ -24,8 +25,11 @@
                     <td>
                         <a href="{{ route('quadras.edit', ['id' => $quadra->id]) }}"
                             class="btn btn-outline-success">Editar</a>
-                        <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
-                            class="btn btn-outline-danger">Remover</a>
+                        {{-- <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
+                            class="btn btn-outline-danger">Remover</a> --}}
+
+                            <a href="{{ route('quadras.destroy', ['id' => $quadra->id]) }}"
+                                class="btn btn-outline-danger">Remover</a>
                     </td>
                 </tr>
             @endforeach

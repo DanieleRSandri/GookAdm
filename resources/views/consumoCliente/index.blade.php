@@ -16,6 +16,12 @@
         <tr>
             <td>{{ $consumo->valorTotal}}</td>
             <td>{{ $consumo->cliente->nome}}</td>
+            <td>
+                <a href="{{ route('consumoClientes.edit', ['id' => $consumo->id]) }}"
+                    class="btn btn-outline-success">Editar</a>
+                    <a href="{{ route('consumoClientes.destroy', ['id' => $consumo->id]) }}"
+                    class="btn btn-outline-danger">Remover</a>
+            </td>
         </tr>
         @endforeach
     </tbody>

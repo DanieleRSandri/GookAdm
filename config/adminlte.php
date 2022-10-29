@@ -290,53 +290,51 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Agenda'],
         [
-            'text' => 'Listagem',
+            'text' => 'Agenda',
             'url'  => 'http://127.0.0.1:8000/agendas',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-calendar-plus',
         ],
-        ['header' => 'Cliente'],
         [
-            'text' => 'Listagem',
+            'text' => 'Clientes',
             'url'  => 'http://127.0.0.1:8000/clientes',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-users', 
         ],
-        ['header' => 'Quadras'],
         [
-            'text' => 'Listagem',
+            'text' => 'Quadras',
             'url'  => 'http://127.0.0.1:8000/quadras',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-futbol',  
         ],
-        ['header' => 'Locais'],
         [
-            'text' => 'Listagem',
+            'text' => 'Locais',
             'url'  => 'http://127.0.0.1:8000/locais',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-map-marker-alt', 
         ],
-        ['header' => 'Usuarios'],
         [
-            'text' => 'Listagem',
+            'text' => 'Usuarios',
             'url'  => 'http://127.0.0.1:8000/usuarios',
-            'icon' => 'fas fa-fw fa-users',
-        ],
-        ['header' => 'Produtos'],
+            'icon' => 'fas fa-users-cog',  
+        ],   
         [
-            'text' => 'Listagem',
+            'text' => 'Produtos',
             'url'  => 'http://127.0.0.1:8000/produtos',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-shopping-cart',
         ],
-        ['header' => 'Consumo Cliente'],
         [
-            'text' => 'Listagem',
+            'text' => 'Consumo Cliente',
             'url'  => 'http://127.0.0.1:8000/consumoClientes',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-shopping-cart', 
         ],
-        ['header' => 'Consumo Produto'],
         [
-            'text' => 'Listagem',
+            'text' => 'Consumo Produto',
             'url'  => 'http://127.0.0.1:8000/consumoProdutos',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-shopping-cart',
+        ],
+        ['header' => 'Relatorios'],
+        [
+            'text' => 'Relatorio de Agendamento',
+            'url'  => 'http://127.0.0.1:8000/gerarPdf/agenda',
+            'icon' => 'fal fa-file-chart-line',  
         ],
        
        

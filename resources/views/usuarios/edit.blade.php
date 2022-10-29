@@ -2,8 +2,8 @@
 
 @section('content')
 <div style="text-align:center">
-    <h4>Nova Usuario</h4>
-</div> 
+    <h4>Editando Usuario:{{$user->name}} </h4>
+</div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -13,21 +13,21 @@
         </ul>
     @endif
 
-    {!! Form::open(['url' => 'usuarios/store']) !!}
+    {!! Form::open(['url'=>"usuarios/$user->id/update", 'method'=>'put']) !!}
 
     <div class="form-group">
         {!! Form::label('name', 'Nome:') !!}
-        {!! Form::text('name', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('name', $user->name, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('email', 'Email:') !!}
-        {!! Form::text('email', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('email', $user->email , ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('password', 'Senha:') !!}
-        {!! Form::text('password', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('password', $user->password , ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
@@ -35,11 +35,11 @@
         {!! Form::select('tipoUsuario',
                             array('Administrador'=>'Administrador',
                                 'Usuario'=> 'Usuario'),
-                            'Usuario',['class'=>'form-control', 'require']) !!}
+                                $user->tipoUsuario ,['class'=>'form-control', 'require']) !!}
         </div>
 
     <div class="form-group" style="text-align:center">
-        {!! Form::submit('Criar Usuario', ['class' => 'btn btn-outline-success']) !!}
+        {!! Form::submit('Editar Cliente', ['class' => 'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar', ['class' => 'btn btn-outline-secondary']) !!}
         <a class="btn btn-outline-danger" href="{{ route('usuarios') }}">Voltar</a>
     </div>

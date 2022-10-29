@@ -60,19 +60,6 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="tipoUsuario" class="col-md-4 col-form-label text-md-end">{{ __('Tipo de Usuario') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="tipoUsuario" type="tipoUsuario" class="form-control @error('tipoUsuario') is-invalid @enderror" name="tipoUsuario" value="{{ old('tipoUsuario') }}" required autocomplete="email">
-
-                                @error('tipoUsuario')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

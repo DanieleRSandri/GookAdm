@@ -7,19 +7,30 @@
     <script>
         function ConfirmaExclusao(id) {
             swal.fire({
-                title: 'Confirma a Exclusão?',
-                text: "Esta Ação Não Pode Ser Desfeita!",
-                type: 'warning', showCancelButton: true,
-                confirmButtonColor: '#3085d6', confirmButtonText: 'Sim, Excluir!',
-                cancelButtonColor: '#d33', cancelButtonText: 'Cancelar',
-                closeOnConfirm: false,
+                title: 'Confirma a exclusão?', text: "Esta ação não poderá ser revertida!",
+                type: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33', confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar!', closeOnConfirm: false, 
             }).then(function(isConfirm) {
                 if (isConfirm.value) {
-                    $.get('/' + @yield('table-delete') + '/' + id + '/destroy',function(data) {
-                        swal.fire('Excluído!', 'Registro Excluído Com Sucesso.', 'success')
-                            .then(function() {
-                                window.location.reload();
+           		 	$.get('/'+ @yield('table-delete') +'/'+id+'/destroy', function(data){
+                        //success data
+                        console.log(data);
+                        if (data.status == 200) {
+                            swal.fire(
+                                'Deletado!',
+                                'Exclusão confirmada.',
+                                'success'
+                            ).then(function(isConfirm) {
+                                    window.location.reload();
                             });
+                        }
+                        else
+                            swal.fire(
+                                'Erro!',
+                                'Ocorreram erros na exclusão. Entre em contato com o suporte.',
+                                'error'
+                            );
                     });
                 }
             })
