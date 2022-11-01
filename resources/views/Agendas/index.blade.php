@@ -1,5 +1,4 @@
-﻿@extends('adminlte::page')
-@section('plugins.fullcalendar', true)
+﻿@extends('layouts.default')
 @section('content')
     <h1 style="padding-top: 15px; text-align: center">Agendamentos</h1>
     <link href='fullcalendar/main.css' rel='stylesheet' />

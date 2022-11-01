@@ -1,4 +1,5 @@
-﻿@extends('adminlte::page')
+﻿@extends('layouts.default')
+
 
 @section('content')
 <div style="text-align:center">
@@ -22,8 +23,8 @@
             <td>
                 <a href="{{ route('consumoProdutos.edit', ['id' => $consumo->id]) }}"
                     class="btn btn-outline-success">Editar</a>
-                    <a href="{{ route('consumoProdutos.destroy', ['id' => $consumo->id]) }}"
-                    class="btn btn-outline-danger">Remover</a>
+                    <a href="#" onclick="return ConfirmaExclusao({{ $consumo->id }})"
+                        class="btn btn-outline-danger">Remover</a>
             </td>
         </tr>
         @endforeach
@@ -34,4 +35,8 @@
     <a class="btn btn-outline-primary" href="{{ route('consumoProdutos.create') }}">Novo Consumo</a>
     </div>
 
+@stop
+
+@section('table-delete')
+"consumoProdutos"
 @stop

@@ -34,7 +34,7 @@
     
 
         <div class="form-group" style="text-align:center">
-        {!! Form::submit('Criar Consumo', ['class'=>'btn btn-outline-success']) !!}
+        {!! Form::submit('Editar Consumo', ['class'=>'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar',['class'=>'btn btn-outline-secondary']) !!}
         <a class="btn btn-outline-danger" href="{{ route('consumoProdutos') }}">Voltar</a>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\LocalRequest;
 use App\Models\Locais;
 use Illuminate\Http\Request;
@@ -8,35 +9,47 @@ use Illuminate\Http\Request;
 
 class LocaisController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $locais = Locais::All();
-        return view('locais.index', ['locais'=>$locais]);
+        return view('locais.index', ['locais' => $locais]);
     }
 
-    public function create(){
+    public function create()
+    {
         return view('locais.create');
     }
 
-    public function store(LocalRequest $request){
+    public function store(LocalRequest $request)
+    {
         $novo_local = $request->all();
         Locais::create($novo_local);
 
         return redirect()->route('locais');
     }
 
-    public function destroy($id){
-        Locais::find($id)->delete();
-        return redirect()->route('locais');
+    public function destroy($id)
+    {
+        try {
+            Locais::find($id)->delete();
+            $ret = array('status' => 200, 'msg' => "null");
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $local = Locais::find($id);
         return view('locais.edit', compact('local'));
     }
-    
-    public function update(LocalRequest $request, $id){
+
+    public function update(LocalRequest $request, $id)
+    {
         Locais::find($id)->update($request->all());
         return redirect()->route('locais');
     }
-
 }

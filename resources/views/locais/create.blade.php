@@ -24,7 +24,17 @@
         {!! Form::label('endereco', 'Endereço:') !!}
         {!! Form::text('endereco',null,['class'=>'form-control', 'require']) !!}
         </div>
-        
+
+        <div class="form-group">
+            {!! Form::label('telefone', 'Telefone') !!}
+            {!! Form::text('telefone',null,['class'=>'form-control', 'require']) !!}
+            </div>
+    
+            <div class="form-group">
+            {!! Form::label('cnpj', 'CNPJ:') !!}
+            {!! Form::text('cnpj',null,['class'=>'form-control', 'require']) !!}
+            </div>
+       
         <div class="form-group" style="text-align:center">
         {!! Form::submit('Criar Local', ['class'=>'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar',['class'=>'btn btn-outline-secondary']) !!}

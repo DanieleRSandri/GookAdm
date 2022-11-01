@@ -1,12 +1,25 @@
-﻿@extends('adminlte::page')
-
+﻿@extends('layouts.default')
 @section('content')
 
     <div style="text-align:center">
         <h4>Listagem de Clientes</h4>
     </div>
 
-    <table class="table table-striped">
+    {!! Form::open(['name' => 'form_name', 'route' => 'clientes']) !!}
+    <div calss="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="desc_filtro" class="form-control" style="width:80% !important;"
+                placeholder="Pesquisa...">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-default"><i
+                        class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    {!! Form::close() !!}
+    <br>
+
+     <table class="table table-striped">
         <thead>
             <th>Nome</th>
             <th>CPF</th>
@@ -25,8 +38,8 @@
                     <td>
                         <a href="{{ route('clientes.edit', ['id' => $cliente->id]) }}"
                             class="btn btn-outline-success">Editar</a>
-                            <a href="{{ route('clientes.destroy', ['id' => $cliente->id]) }}"
-                            class="btn btn-outline-danger">Remover</a>
+                            <a href="#" onclick="return ConfirmaExclusao({{ $cliente->id }})"
+                                class="btn btn-outline-danger">Remover</a>
                     </td>
                 </tr>
             @endforeach
@@ -38,3 +51,8 @@
     </div>
 
 @stop
+
+@section('table-delete')
+"clientes"
+@stop
+

@@ -25,7 +25,10 @@ class LocalRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:5',
-            'endereco' => 'required|min:5' 
+            'endereco' => 'required|min:5' ,
+            'telefone' => 'required|min:5',
+            'cnpj' => 'required|min:5' 
+
         ];
 
        }

@@ -9,25 +9,21 @@ use Illuminate\Http\Request;
 class ConsumoClienteController extends Controller
 {
     public function index(){
-        $consumoClientes = ConsumoCliente::All();
+        $consumoClientes = ConsumoCliente::orderBy('id_cliente')->paginate(5);
         return view('consumoCliente.index', ['consumoCliente'=>$consumoClientes]);
     }
-   
 
-    public function create(){
-        return view('consumoCliente.create');
-    }
-
-    public function store(ConsumoClienteRequest $request){
-        $consumoClientes = $request->all();
-        ConsumoCliente::create($consumoClientes);
-
-        return redirect('consumoClientes');
-    }
-
-    public function destroy($id){
-        ConsumoCliente::find($id)->delete();
-        return redirect('consumoClientes');
+      public function destroy($id)
+    {
+        try {
+            ConsumoCliente::find($id)->delete();
+            $ret = array('status' => 200, 'msg' => "null");
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit($id){

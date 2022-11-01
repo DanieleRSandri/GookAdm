@@ -17,6 +17,8 @@ class CreateLocaisTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome',100);
             $table->string('endereco',100);
+            $table->string('telefone',100);
+            $table->string('cnpj',100);
             $table->timestamps();
         });
     }

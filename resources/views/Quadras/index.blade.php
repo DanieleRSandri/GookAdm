@@ -1,11 +1,22 @@
-﻿{{-- @extends('layouts.default') --}}
-@extends('adminlte::page')
-
-
+﻿@extends('layouts.default')
 @section('content')
     <div style="text-align:center">
         <h4>Listagem de Quadras</h4>
     </div>
+
+    {!! Form::open(['name' => 'form_name', 'route' => 'quadras']) !!}
+    <div calss="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="desc_filtro" class="form-control" style="width:80% !important;"
+                placeholder="Pesquisa...">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-default"><i
+                        class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    {!! Form::close() !!}
+    <br>
 
     <table class="table table-striped">
         <thead>
@@ -25,11 +36,8 @@
                     <td>
                         <a href="{{ route('quadras.edit', ['id' => $quadra->id]) }}"
                             class="btn btn-outline-success">Editar</a>
-                        {{-- <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
-                            class="btn btn-outline-danger">Remover</a> --}}
-
-                            <a href="{{ route('quadras.destroy', ['id' => $quadra->id]) }}"
-                                class="btn btn-outline-danger">Remover</a>
+                        <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
+                            class="btn btn-outline-danger">Remover</a>
                     </td>
                 </tr>
             @endforeach
@@ -40,6 +48,6 @@
     </div>
 @stop
 
-{{-- @section('table-delete')
+@section('table-delete')
 "quadras"
-@stop --}}
+@stop

@@ -1,10 +1,24 @@
-﻿@extends('adminlte::page')
+﻿@extends('layouts.default')
 
 @section('content')
 
     <div style="text-align:center">
         <h4>Listagem de Usuários</h4>
     </div>
+
+    {!! Form::open(['name' => 'form_name', 'route' => 'usuarios']) !!}
+    <div calss="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="desc_filtro" class="form-control" style="width:80% !important;"
+                placeholder="Pesquisa...">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-default"><i
+                        class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    {!! Form::close() !!}
+    <br>
 
     <table class="table table-striped">
         <thead>
@@ -23,8 +37,8 @@
             <td>
                 <a href="{{ route('usuarios.edit', ['id' => $usuario->id]) }}"
                     class="btn btn-outline-success">Editar</a>
-                    <a href="{{ route('usuarios.destroy', ['id' => $usuario->id]) }}"
-                    class="btn btn-outline-danger">Remover</a>
+                    <a href="#" onclick="return ConfirmaExclusao({{ $usuario->id }})"
+                        class="btn btn-outline-danger">Remover</a>
             </td>
         </tr>
         @endforeach
@@ -34,4 +48,8 @@
         <a class="btn btn-outline-primary" href="{{ route('usuarios.create') }}">Novo Usuario</a>
     </div>
 
+@stop
+
+@section('table-delete')
+"usuarios"
 @stop

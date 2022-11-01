@@ -8,10 +8,16 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
-    public function index(){
-        $usuarios = User::All();
-        return view('usuarios.index', ['usuarios'=>$usuarios]);
-    }
+    public function index(Request $filtro)
+	{
+		$filtragem = $filtro->get('desc_filtro');
+
+        if ($filtragem == null) 
+    		$usuarios = User::orderBy('name')->paginate(5);
+        else
+            $usuarios = User::where('name', 'like', '%'.$filtragem.'%')->orderBy("name")->paginate(5);
+		return view('usuarios.index', ['usuarios'=>$usuarios, 'filtro'=>$filtro->get('desc_filtro')]);
+	}
     
     public function create(){
         return view('usuarios.create');
@@ -24,9 +30,17 @@ class UsuariosController extends Controller
         return redirect('usuarios');
     }
 
-    public function destroy($id){
-        User::find($id)->delete();
-        return redirect('usuarios');
+    public function destroy($id)
+    {
+        try {
+            User::find($id)->delete();
+            $ret = array('status' => 200, 'msg' => "null");
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
     }
 
     public function edit($id){

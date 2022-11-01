@@ -15,7 +15,7 @@
                 if (isConfirm.value) {
            		 	$.get('/'+ @yield('table-delete') +'/'+id+'/destroy', function(data){
                         //success data
-                        console.log(data);
+                        console.log(data.status );
                         if (data.status == 200) {
                             swal.fire(
                                 'Deletado!',

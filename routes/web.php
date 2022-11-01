@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function(){
         });
     
         Route::group(['prefix'=>'quadras', 'where'=>['id'=>'[0-9]+']], function() {
-            Route::get('',            ['as'=>'quadras',          'uses'=>'App\Http\Controllers\QuadrasController@index']);
+            Route::any('',            ['as'=>'quadras',          'uses'=>'App\Http\Controllers\QuadrasController@index']);
             Route::get('create',      ['as'=>'quadras.create',    'uses'=>'App\Http\Controllers\QuadrasController@create']);
             Route::get('{id}/destroy',['as'=>'quadras.destroy',  'uses'=>'App\Http\Controllers\QuadrasController@destroy']);
             Route::get('{id}/edit',   ['as'=>'quadras.edit',     'uses'=>'App\Http\Controllers\QuadrasController@edit']);
@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
         });
 
         Route::group(['prefix'=>'usuarios', 'where'=>['id'=>'[0-9]+']], function() {
-            Route::get('',            ['as'=>'usuarios',          'uses'=>'App\Http\Controllers\UsuariosController@index']);
+            Route::any('',            ['as'=>'usuarios',          'uses'=>'App\Http\Controllers\UsuariosController@index']);
             Route::get('create',      ['as'=>'usuarios.create',    'uses'=>'App\Http\Controllers\UsuariosController@create']);
             Route::get('{id}/destroy',['as'=>'usuarios.destroy',  'uses'=>'App\Http\Controllers\UsuariosController@destroy']);
             Route::get('{id}/edit',   ['as'=>'usuarios.edit',     'uses'=>'App\Http\Controllers\UsuariosController@edit']);
@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function(){
         });
         
         Route::group(['prefix'=>'produtos', 'where'=>['id'=>'[0-9]+']], function() {
-            Route::get('',            ['as'=>'produtos',          'uses'=>'App\Http\Controllers\ProdutosController@index']);
+            Route::any('',            ['as'=>'produtos',          'uses'=>'App\Http\Controllers\ProdutosController@index']);
             Route::get('create',      ['as'=>'produtos.create',    'uses'=>'App\Http\Controllers\ProdutosController@create']);
             Route::get('{id}/destroy',['as'=>'produtos.destroy',  'uses'=>'App\Http\Controllers\ProdutosController@destroy']);
             Route::get('{id}/edit',   ['as'=>'produtos.edit',     'uses'=>'App\Http\Controllers\ProdutosController@edit']);
@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     // Route::middleware('can:Administrador,Usuario')->group(function () {
         Route::group(['prefix'=>'clientes', 'where'=>['id'=>'[0-9]+']], function() {
-            Route::get('',            ['as'=>'clientes',          'uses'=>'App\Http\Controllers\ClientesController@index']);
+            Route::any('',            ['as'=>'clientes',          'uses'=>'App\Http\Controllers\ClientesController@index']);
             Route::get('create',      ['as'=>'clientes.create',    'uses'=>'App\Http\Controllers\ClientesController@create']);
             Route::get('{id}/destroy',['as'=>'clientes.destroy',  'uses'=>'App\Http\Controllers\ClientesController@destroy']);
             Route::get('{id}/edit',   ['as'=>'clientes.edit',     'uses'=>'App\Http\Controllers\ClientesController@edit']);
