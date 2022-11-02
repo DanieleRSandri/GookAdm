@@ -13,6 +13,7 @@
     @endif
 
     {!! Form::open(['url' => 'agendas/store']) !!}
+    
     <div class="form-group">
         {!! Form::label('data', 'Data') !!}
         {!! Form::date('data', null, ['class' => 'form-control', 'require']) !!}

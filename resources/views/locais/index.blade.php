@@ -20,7 +20,7 @@
             <td>{{ $local->nome}}</td>
             <td>{{ $local->endereco}}</td>
             <td>{{ $local->telefone}}</td>
-            <td>{{ $local->cnpj}}</td>
+            <td>{{ $local->cnpj }}</td>
             <td>
                 <a href="{{ route('locais.edit', ['id'=>$local->id]) }}" class="btn btn-outline-success">Editar</a>
                 {{-- <a href="#" onclick="return ConfirmaExclusao({{ $local->id }})"

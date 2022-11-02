@@ -12,25 +12,35 @@ class AgendasController extends Controller
     public function geraPdf()
     {
         $agendas = Agenda::All();
-        //  dd($agendas);         
+
         $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
         return $pdf->setPaper('a4')->download('Lista_Agendamento.pdf');
     }
 
-    public function VerificaHoraria($data, $horaInicial, $horaFinal)
+    public function VerificaHoraria($data, $horaInicial, $horaFinal, $status)
     {
-        $horario = Agenda::where("data", $data)->where('status', 'Agendado')->orWhere('status', 'Disponivel');
-        $valida =  $horario->whereBetween("horario_inicio", [$horaInicial, $horaFinal])->get();
+        // dd($status);
+        if ($status != 'Cancelado') {
+            $horario = Agenda::where("data", $data)
+                ->where(function ($query) {
+                    $query->where('status', 'Agendado')->orWhere('status', 'Disponivel');
+                })->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
+                ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
 
-        if ($valida->count() > 0) {
-            return false;
+            if ($horario->count() > 0) {
+                return false;
+            }
+        } else {
+            $horario = Agenda::where("data", $data)
+                ->where(function ($query) {
+                    $query->where('status', 'Cancelado');
+                })->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
+                ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
+
+            if ($horario->count() > 0) {
+                return false;
+            }
         }
-
-        $valida = $horario->whereBetween("horario_final", [$horaInicial, $horaFinal])->get();
-        if ($valida->count() > 0) {
-            return false;
-        }
-
         return true;
     }
 
@@ -49,9 +59,13 @@ class AgendasController extends Controller
     {
         $novo_agendamento = $request->all();
 
-        if ($this->VerificaHoraria($novo_agendamento['data'], $novo_agendamento['horario_inicio'], $novo_agendamento['horario_final']))
+        if ($this->VerificaHoraria($novo_agendamento['data'], $novo_agendamento['horario_inicio'], $novo_agendamento['horario_final'], $novo_agendamento['status'])) :
             Agenda::create($novo_agendamento);
-        return redirect('agendas');
+            return redirect('agendas');
+        else :
+            echo '<script> alert ("Ja existe um agendamento entre os horarios informados"); location.href=("http://127.0.0.1:8000/agendas/create")</script>';
+
+        endif;
     }
 
     public function destroy($id)
@@ -77,8 +91,12 @@ class AgendasController extends Controller
     {
         $agendamento = $request->all();
 
-        if ($this->VerificaHoraria($agendamento['data'], $agendamento['horario_inicio'], $agendamento['horario_final']))
+        if ($this->VerificaHoraria($agendamento['data'], $agendamento['horario_inicio'], $agendamento['horario_final'], $agendamento['status'])) :
             Agenda::find($id)->update($request->all());
-        return redirect('agendas');
+            return redirect('agendas');
+        else :
+            echo '<script> alert ("Ja existe um agendamento entre os horarios informados");)</script>';
+
+        endif;
     }
 }

@@ -1,4 +1,4 @@
-﻿@extends('layouts.default')
+﻿@extends('adminlte::page')
 @section('content')
     <h1 style="padding-top: 15px; text-align: center">Agendamentos</h1>
     <link href='fullcalendar/main.css' rel='stylesheet' />
@@ -9,7 +9,7 @@
     <script src='fullcalendar/main.js'></script>
     <script src='fullcalendar/locales/pt-br.js'></script>
     <script>
-               function getColor($status) {
+        function getColor($status) {
             $eventColor = '';
             if ($status == 'Disponivel') {
                 $eventColor = '#006400';
@@ -22,65 +22,77 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                    locale: 'pt-br',
-                    initialView: 'timeGridWeek',
-                    headerToolbar: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
+                locale: 'pt-br',
+                initialView: 'timeGridWeek',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
 
-                    },
-                    customButtons: {
-                        novo: {
-                            text: 'Novo Agendamento',
-                            click: function() {
-                                window.location.href = ("http://127.0.0.1:8000/agendas/create");
-                            }
+                },
+                select : function(start, end, allDay) {//Ao clicar na celula do calendario
+          
+          
+                var start = $.fullCalendar.moment(start).format();
+                var end = $.fullCalendar.moment(end).format();
+                $.ajax({
+                    url : 'http://127.0.0.1:8000/agendas/create',
+                    data : '&horario_inicio=' + start + '&horario_final=' + end ,
+                    type : "POST",
+                    sucess : function(json) {
+                        alert('OK');
+                    }
+                });
+
+            
+            calendar.fullCalendar('unselect');
+        },
+                customButtons: {
+                    novo: {
+                        text: 'Novo Agendamento',
+                        click: function() {
+                            window.location.href = ("http://127.0.0.1:8000/agendas/create");
                         }
-                    },
-                    events: [
-                        @foreach ($agendas as $agendas)
-                            {
-                                id: '{{ $agendas->id }}',
-                                title: '{{ $agendas->status }}',
-                                start: '{{ $agendas->data }}T{{ $agendas->horario_inicio }}',
-                                end: '{{$agendas->data }}T{{ $agendas->horario_final}}',
-                                extendedProps: {
-                                    cliente: '{{$agendas->id_cliente}}' ,
-                                    quadra: '{{$agendas->id_quadra}}'
-                                },
-
-                                color: getColor('{{ $agendas->status }}')
-
+                    }
+                },
+                events: [
+                    @foreach ($agendas as $agendas)
+                        {
+                            id: '{{ $agendas->id }}',
+                            title: '{{ $agendas->status }}',
+                            start: '{{ $agendas->data }}T{{ $agendas->horario_inicio }}',
+                            end: '{{ $agendas->data }}T{{ $agendas->horario_final }}',
+                            extendedProps: {
+                                cliente: '{{ $agendas->id_cliente }}',
+                                quadra: '{{ $agendas->id_quadra }}'
                             },
-                        @endforeach
+                            color: getColor('{{ $agendas->status }}')
+                        },
+                    @endforeach
+                ],
+                eventClick: function(info) {
+                    info.jsEvent.preventDefault(); // don't let the browser navigate          
+                    $('#vizualizar #id').text(info.event.id)
+                    $('#vizualizar #title').text(info.event.title)
+                    $('#vizualizar #start').text(info.event.start.toLocaleString())
+                    $('#vizualizar #end').text(info.event.end.toLocaleString())
+                    $('#vizualizar #idQuadra').text(info.event.extendedProps.quadra)
+                    $('#vizualizar #idCliente').text(info.event.extendedProps.cliente)
+                    $('#vizualizar').modal('show')
 
-                   ],
+                },
+                dateClick: function(info) {
+                    window.location.href = ("http://127.0.0.1:8000/agendas/create");
 
-                    eventClick: function(info) {
-                        info.jsEvent.preventDefault(); // don't let the browser navigate
-
-                        $('#vizualizar #id').text(info.event.id)
-                        $('#vizualizar #title').text(info.event.title)
-                        $('#vizualizar #start').text(info.event.start.toLocaleString())
-                        $('#vizualizar #end').text(info.event.end.toLocaleString())
-                        $('#vizualizar #idQuadra').text(info.event.extendedProps.quadra)
-                        $('#vizualizar #idCliente').text(info.event.extendedProps.cliente)
-                        $('#vizualizar').modal('show')
-                    },
-                    eventDoubleClick: function (info) {
-                        info.jsEvent.preventDefault(); // don't let the browser navigate
-                        window.location = "http://127.0.0.1:8000/agendas/" + info.event.id+"/edit";
-},
-                }
-
-            );
+  }
+            });
             calendar.render();
         });
     </script>
+
     <!-- Calendar -->
     <div id='calendar'></div>
 
@@ -96,30 +108,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                  <div class="vizualizar">
-                    <dl class="row">
-                        <dt class="col-sm-3">ID do Evento</dt>
-                        <dd class="col-sm-9" id="id"></dd>
-                        <dt class="col-sm-3">Status do Evento</dt>
-                        <dd class="col-sm-9" id="title"></dd>
-                        <dt class="col-sm-3">Inicio Evento</dt>
-                        <dd class="col-sm-9" id="start"></dd>
-                        <dt class="col-sm-3">Fim do Evento</dt>
-                        <dd class="col-sm-9" id="end"></dd>
-                        <dt class="col-sm-3">ID Quadra</dt>
-                        <dd class="col-sm-9" id="idQuadra"></dd>
-                        <dt class="col-sm-3">ID Cliente</dt>
-                        <dd class="col-sm-9" id="idCliente"></dd>
+                    <div class="vizualizar">
+                        <dl class="row">
+                            <dt class="col-sm-3">ID do Evento</dt>
+                            <dd class="col-sm-9" id="id"></dd>
+                            <dt class="col-sm-3">Status do Evento</dt>
+                            <dd class="col-sm-9" id="title"></dd>
+                            <dt class="col-sm-3">Inicio Evento</dt>
+                            <dd class="col-sm-9" id="start"></dd>
+                            <dt class="col-sm-3">Fim do Evento</dt>
+                            <dd class="col-sm-9" id="end"></dd>
+                            <dt class="col-sm-3">ID Quadra</dt>
+                            <dd class="col-sm-9" id="idQuadra"></dd>
+                            <dt class="col-sm-3">ID Cliente</dt>
+                            <dd class="col-sm-9" id="idCliente"></dd>
 
-                     
-                    </dl>
-                    <div class="form-group" style="text-align:center">
-                        <a href="{{ route('agendas.edit', ['id' => 1]) }}"
-              class="btn btn-outline-success">Editar</a>
-      </div>       
-                  </div>
 
-                </div>           
+                        </dl>
+                        <div class="form-group" style="text-align:center">
+                            <a href="{{ route('agendas.edit', ['id' => 1]) }}" class="btn btn-outline-success">Editar</a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

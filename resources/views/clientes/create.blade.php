@@ -1,5 +1,25 @@
 ﻿@extends('adminlte::page')
 
+@section('script')
+<script>
+function mascara(i){
+   
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   i.setAttribute("maxlength", "14");
+   if (v.length == 3 || v.length == 7) i.value += ".";
+   if (v.length == 11) i.value += "-";
+
+}
+
+</script>
+@endsection
+
 @section('content')
 <div style="text-align:center">
     <h4>Novo Cliente</h4>
@@ -18,11 +38,16 @@
     <div class="form-group">
         {!! Form::label('nome', 'Nome:') !!}
         {!! Form::text('nome', null, ['class' => 'form-control', 'require']) !!}
+
     </div>
 
     <div class="form-group">
         {!! Form::label('cpf', 'Cpf:') !!}
-        {!! Form::text('cpf', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('cpf', null, ['class' => 'form-control', 'require']) !!} 
+
+
+       
+			
     </div>
 
     <div class="form-group">
