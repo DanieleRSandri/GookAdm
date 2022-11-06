@@ -332,8 +332,23 @@ return [
         ],
         ['header' => 'Relatorios'],
         [
-            'text' => 'Relatorio de Agendamento',
-            'url'  => 'http://127.0.0.1:8000/gerarPdf/agenda',
+            'text' => 'Relatorio de Agendamento Diario',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDiario',
+            'icon' => 'fal fa-file-chart-line',  
+        ],
+        [
+            'text' => 'Relatorio de Agendamento Semanal',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosSemanal',
+            'icon' => 'fal fa-file-chart-line',  
+        ],
+        [
+            'text' => 'Relatorio de Agendamento Mensal',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosMensal',
+            'icon' => 'fal fa-file-chart-line',  
+        ],
+        [
+            'text' => 'Relatorio de Clientes',
+            'url'  => 'http://127.0.0.1:8000/relatorios/clientes',
             'icon' => 'fal fa-file-chart-line',  
         ],
        

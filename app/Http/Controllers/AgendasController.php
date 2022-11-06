@@ -4,27 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgendaRequest;
 use App\Models\Agenda;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class AgendasController extends Controller
 {
-
-    public function geraPdf()
-    {
-        $agendas = Agenda::All();
-
-        $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-        return $pdf->setPaper('a4')->download('Lista_Agendamento.pdf');
-    }
-
-    public function VerificaHoraria($data, $horaInicial, $horaFinal, $status)
+    public function VerificaHoraria($data, $horaInicial, $horaFinal, $status, $id_quadra)
     {
         // dd($status);
         if ($status != 'Cancelado') {
             $horario = Agenda::where("data", $data)
+                ->where('id_quadra', $id_quadra)
                 ->where(function ($query) {
                     $query->where('status', 'Agendado')->orWhere('status', 'Disponivel');
-                })->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
+                })
+                ->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
                 ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
 
             if ($horario->count() > 0) {
@@ -32,6 +24,7 @@ class AgendasController extends Controller
             }
         } else {
             $horario = Agenda::where("data", $data)
+
                 ->where(function ($query) {
                     $query->where('status', 'Cancelado');
                 })->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
@@ -59,7 +52,7 @@ class AgendasController extends Controller
     {
         $novo_agendamento = $request->all();
 
-        if ($this->VerificaHoraria($novo_agendamento['data'], $novo_agendamento['horario_inicio'], $novo_agendamento['horario_final'], $novo_agendamento['status'])) :
+        if ($this->VerificaHoraria($novo_agendamento['data'], $novo_agendamento['horario_inicio'], $novo_agendamento['horario_final'], $novo_agendamento['status'], $novo_agendamento['id_quadra'])) :
             Agenda::create($novo_agendamento);
             return redirect('agendas');
         else :
@@ -91,7 +84,7 @@ class AgendasController extends Controller
     {
         $agendamento = $request->all();
 
-        if ($this->VerificaHoraria($agendamento['data'], $agendamento['horario_inicio'], $agendamento['horario_final'], $agendamento['status'])) :
+        if ($this->VerificaHoraria($agendamento['data'], $agendamento['horario_inicio'], $agendamento['horario_final'], $agendamento['status'], $agendamento['id_quadra'])) :
             Agenda::find($id)->update($request->all());
             return redirect('agendas');
         else :
