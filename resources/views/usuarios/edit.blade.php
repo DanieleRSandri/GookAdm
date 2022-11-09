@@ -39,7 +39,7 @@
         </div>
 
     <div class="form-group" style="text-align:center">
-        {!! Form::submit('Editar Usuario', ['class' => 'btn btn-outline-success']) !!}
+        {!! Form::submit('Editar Usuario  ', ['class' => 'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar', ['class' => 'btn btn-outline-secondary']) !!}
         <a class="btn btn-outline-danger" href="{{ route('usuarios') }}">Voltar</a>
     </div>

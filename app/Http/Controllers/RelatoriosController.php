@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\Cliente;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Psy\Readline\Hoa\Console;
+
 
 class RelatoriosController extends Controller
 {

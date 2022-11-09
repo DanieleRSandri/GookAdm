@@ -26,8 +26,8 @@
                     <td>{{ Carbon\Carbon::parse($agenda->data)->format('d-m-Y') }}</td>
                     <td>{{ Carbon\Carbon::parse($agenda->horario_inicio)->format('h:i') }}</td>
                     <td>{{ Carbon\Carbon::parse($agenda->horario_final)->format('h:i') }}</td>
-                    <td>{{ $agenda->id_cliente }}</td>
-                    <td>{{ $agenda->id_quadra }}</td>
+                    <td>{{ isset($agenda->id_cliente) ? $agenda->cliente->nome : "-" }}</td>
+                    <td>{{ isset($agenda->id_quadra) ? $agenda->quadra->nome : "-" }}</td>
                 </tr>
             @endforeach
         </tbody>

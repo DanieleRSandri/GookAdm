@@ -28,20 +28,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
 
-        // Gate::define('Usuario', function (User $user) {
+        Gate::define('Usuario', function ($user) {
+            return $user->tipoUsuario === 'Usuario' ? true : false;
+        });
 
-        //     if ($user->tipoUsuario ==='Administrador') {
-        //         return Response::allow();
-        //     } else {
-        //         return Response::deny('Você deve ser o Administrador');
-        //     }
-        // });
-
-        //    Gate::define('Administrador', function (User $user) {
-
-        //     if ($user->tipoUsuario === 'Administrador') {
-        //         return Response::allow();
-        //     }
-        // });
+        Gate::define('Administrador', function ($user) {
+            return $user->tipoUsuario === 'Administrador' ? true : false;
+        });
     }
 }

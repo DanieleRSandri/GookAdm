@@ -33,23 +33,6 @@
                     right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
 
                 },
-                select : function(start, end, allDay) {//Ao clicar na celula do calendario
-          
-          
-                var start = $.fullCalendar.moment(start).format();
-                var end = $.fullCalendar.moment(end).format();
-                $.ajax({
-                    url : 'http://127.0.0.1:8000/agendas/create',
-                    data : '&horario_inicio=' + start + '&horario_final=' + end ,
-                    type : "POST",
-                    sucess : function(json) {
-                        alert('OK');
-                    }
-                });
-
-            
-            calendar.fullCalendar('unselect');
-        },
                 customButtons: {
                     novo: {
                         text: 'Novo Agendamento',
@@ -65,15 +48,19 @@
                             title: '{{ $agendas->status }}',
                             start: '{{ $agendas->data }}T{{ $agendas->horario_inicio }}',
                             end: '{{ $agendas->data }}T{{ $agendas->horario_final }}',
+                            // url: 'agendas/{{ $agendas->id }}/edit',
                             extendedProps: {
-                                cliente: '{{ $agendas->id_cliente }}',
-                                quadra: '{{ $agendas->id_quadra }}'
+                                cliente: '{{ isset($agendas->id_cliente) ? $agendas->cliente->nome : '-' }}',
+                                quadra: '{{ isset($agendas->id_quadra) ? $agendas->quadra->nome : '-' }}'
                             },
                             color: getColor('{{ $agendas->status }}')
                         },
                     @endforeach
                 ],
                 eventClick: function(info) {
+                    // window.open(info.event.url);
+                    // window.location.href(info.event.url);
+
                     info.jsEvent.preventDefault(); // don't let the browser navigate          
                     $('#vizualizar #id').text(info.event.id)
                     $('#vizualizar #title').text(info.event.title)
@@ -81,13 +68,12 @@
                     $('#vizualizar #end').text(info.event.end.toLocaleString())
                     $('#vizualizar #idQuadra').text(info.event.extendedProps.quadra)
                     $('#vizualizar #idCliente').text(info.event.extendedProps.cliente)
-                    $('#vizualizar').modal('show')
+                    // $('#vizualizar #link').text(info.event.url)
+                    $('#vizualizar').modal('show');
 
+                    $("#taga").attr("href", 'agendas/'+info.event.id+'/edit')
+                   
                 },
-                dateClick: function(info) {
-                    window.location.href = ("http://127.0.0.1:8000/agendas/create");
-
-  }
             });
             calendar.render();
         });
@@ -110,23 +96,22 @@
                 <div class="modal-body">
                     <div class="vizualizar">
                         <dl class="row">
-                            <dt class="col-sm-3">ID do Evento</dt>
+                            <dt class="col-sm-3">ID do Evento:</dt>
                             <dd class="col-sm-9" id="id"></dd>
-                            <dt class="col-sm-3">Status do Evento</dt>
+                            <dt class="col-sm-3">Status do Evento:</dt>
                             <dd class="col-sm-9" id="title"></dd>
-                            <dt class="col-sm-3">Inicio Evento</dt>
+                            <dt class="col-sm-3">Inicio Evento:</dt>
                             <dd class="col-sm-9" id="start"></dd>
-                            <dt class="col-sm-3">Fim do Evento</dt>
+                            <dt class="col-sm-3">Fim do Evento:</dt>
                             <dd class="col-sm-9" id="end"></dd>
-                            <dt class="col-sm-3">ID Quadra</dt>
+                            <dt class="col-sm-3"> Quadra:</dt>
                             <dd class="col-sm-9" id="idQuadra"></dd>
-                            <dt class="col-sm-3">ID Cliente</dt>
+                            <dt class="col-sm-3"> Cliente:</dt>
                             <dd class="col-sm-9" id="idCliente"></dd>
-
 
                         </dl>
                         <div class="form-group" style="text-align:center">
-                            <a href="{{ route('agendas.edit', ['id' => 1]) }}" class="btn btn-outline-success">Editar</a>
+                            <a id="taga" href="" class="btn btn-outline-success">Editar</a>
                         </div>
                     </div>
 

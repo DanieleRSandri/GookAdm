@@ -46,22 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('store',      ['as' => 'produtos.store',    'uses' => 'App\Http\Controllers\ProdutosController@store']);
     });
 
-    Route::group(['prefix' => 'consumoClientes', 'where' => ['id' => '[0-9]+']], function () {
-        Route::get('',            ['as' => 'consumoClientes',          'uses' => 'App\Http\Controllers\ConsumoClienteController@index']);
-        Route::get('create',      ['as' => 'consumoClientes.create',    'uses' => 'App\Http\Controllers\ConsumoClienteController@create']);
-        Route::get('{id}/destroy', ['as' => 'consumoClientes.destroy',  'uses' => 'App\Http\Controllers\ConsumoClienteController@destroy']);
-        Route::get('{id}/edit',   ['as' => 'consumoClientes.edit',     'uses' => 'App\Http\Controllers\ConsumoClienteController@edit']);
-        Route::put('{id}/update', ['as' => 'consumoClientes.update',   'uses' => 'App\Http\Controllers\ConsumoClienteController@update']);
-        Route::post('store',      ['as' => 'consumoClientes.store',    'uses' => 'App\Http\Controllers\ConsumoClienteController@store']);
-    });
-
-    Route::group(['prefix' => 'consumoProdutos', 'where' => ['id' => '[0-9]+']], function () {
-        Route::get('',            ['as' => 'consumoProdutos',          'uses' => 'App\Http\Controllers\ConsumoProdutoController@index']);
-        Route::get('create',      ['as' => 'consumoProdutos.create',    'uses' => 'App\Http\Controllers\ConsumoProdutoController@create']);
-        Route::get('{id}/destroy', ['as' => 'consumoProdutos.destroy',  'uses' => 'App\Http\Controllers\ConsumoProdutoController@destroy']);
-        Route::get('{id}/edit',   ['as' => 'consumoProdutos.edit',     'uses' => 'App\Http\Controllers\ConsumoProdutoController@edit']);
-        Route::put('{id}/update', ['as' => 'consumoProdutos.update',   'uses' => 'App\Http\Controllers\ConsumoProdutoController@update']);
-        Route::post('store',      ['as' => 'consumoProdutos.store',    'uses' => 'App\Http\Controllers\ConsumoProdutoController@store']);
+    Route::group(['prefix' => 'consumo', 'where' => ['id' => '[0-9]+']], function () {
+        Route::get('',            ['as' => 'consumo',          'uses' => 'App\Http\Controllers\ConsumoController@index']);
+        Route::get('create',      ['as' => 'consumo.create',    'uses' => 'App\Http\Controllers\ConsumoController@create']);
     });
 
     Route::group(['prefix' => 'clientes', 'where' => ['id' => '[0-9]+']], function () {
@@ -86,9 +73,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('agendamentosDiario',      ['as' => 'relatorios.agendamentosDiario',    'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosDiario']);
         Route::get('agendamentosSemanal',      ['as' => 'relatorios.agendamentosSemanal',    'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosSemanal']);
         Route::get('agendamentosMensal',      ['as' => 'relatorios.agendamentosMensal',    'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosMensal']);
+        Route::post('agendamentos', ['as' => 'relatorios.agendamentos',    'uses' => 'App\Http\Controllers\RelatoriosController@agendamentos']);
         Route::get('clientes',      ['as' => 'relatorios.cliente',    'uses' => 'App\Http\Controllers\RelatoriosController@cliente']);
     });
-
 });
 
 Auth::routes();

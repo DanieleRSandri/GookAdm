@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ConsumoProduto extends Model
 {
     use HasFactory;
-
-    protected $table = 'consumo_produtos';
-    protected $fillable = ['quantidade','id_produto',"id_consumo"];
-    
-    public function consumo(){
-        return $this->belongsTo("App\Models\ConsumoCliente","id_consumo");
-    }
+    protected $table = 'consumos';
+    protected $fillable = ['id_consumo','id_produto'];
 
     public function produto(){
-        return $this->belongsTo("App\Models\Produto","id_produto");
+        return $this->belongsTo("App\Models\Produto",'id_produto');
+    }
+
+    public function consumo(){
+        return $this->belongsTo("App\Models\Consumo",'id_consumo');
     }
 }

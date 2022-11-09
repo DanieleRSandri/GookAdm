@@ -15,15 +15,12 @@ class CreateConsumoProdutosTable extends Migration
     {
         Schema::create('consumo_produtos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('quantidade');
             $table->bigInteger('id_produto')->unsigned()->nullable();
             $table->foreign('id_produto')->references('id')->on('produtos');
             $table->bigInteger('id_consumo')->unsigned()->nullable();
-            $table->foreign('id_consumo')->references('id')->on('consumo_clientes');
+            $table->foreign('id_consumo')->references('id')->on('consumos');
             $table->timestamps();
         });
-
-       
     }
 
     /**

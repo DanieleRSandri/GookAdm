@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConsumoClientesTable extends Migration
+class CreateConsumosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateConsumoClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('consumo_clientes', function (Blueprint $table) {
+        Schema::create('consumos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('valorTotal', 8, 2);
             $table->bigInteger('id_cliente')->unsigned()->nullable();
@@ -29,6 +29,6 @@ class CreateConsumoClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consumo_clientes');
+        Schema::dropIfExists('consumos');
     }
 }

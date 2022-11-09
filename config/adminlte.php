@@ -294,65 +294,64 @@ return [
             'text' => 'Agenda',
             'url'  => 'http://127.0.0.1:8000/agendas',
             'icon' => 'fas fa-calendar-plus',
+            'can' => ['Administrador', 'Usuario'],
         ],
         [
             'text' => 'Clientes',
             'url'  => 'http://127.0.0.1:8000/clientes',
-            'icon' => 'fas fa-users', 
+            'icon' => 'fas fa-users',
+            'can' => ['Administrador', 'Usuario'],
         ],
         [
             'text' => 'Quadras',
             'url'  => 'http://127.0.0.1:8000/quadras',
-            'icon' => 'fas fa-futbol',  
+            'icon' => 'fas fa-futbol',
+            'can' => ['Administrador'],
         ],
         [
             'text' => 'Locais',
             'url'  => 'http://127.0.0.1:8000/locais',
-            'icon' => 'fas fa-map-marker-alt', 
+            'icon' => 'fas fa-map-marker-alt',
+            'can' => ['Administrador'],
         ],
         [
             'text' => 'Usuarios',
             'url'  => 'http://127.0.0.1:8000/usuarios',
-            'icon' => 'fas fa-users-cog',  
-        ],   
-        [
-            'text' => 'Produtos',
-            'url'  => 'http://127.0.0.1:8000/produtos',
-            'icon' => 'fas fa-shopping-cart',
+            'icon' => 'fas fa-users-cog',
+            'can' => ['Administrador'],
         ],
-        [
-            'text' => 'Consumo Cliente',
-            'url'  => 'http://127.0.0.1:8000/consumoClientes',
-            'icon' => 'fas fa-shopping-cart', 
-        ],
-        [
-            'text' => 'Consumo Produto',
-            'url'  => 'http://127.0.0.1:8000/consumoProdutos',
-            'icon' => 'fas fa-shopping-cart',
-        ],
-        ['header' => 'Relatorios'],
+        // [
+        //     'text' => 'Produtos',
+        //     'url'  => 'http://127.0.0.1:8000/produtos',
+        //     'icon' => 'fas fa-shopping-cart',
+        //     'can' => ['Administrador'],
+        // ],
         [
             'text' => 'Relatorio de Agendamento Diario',
             'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDiario',
-            'icon' => 'fal fa-file-chart-line',  
+            'icon' => 'fa-solid fa-file-chart-column',
+            'can' => ['Administrador', 'Usuario'],
         ],
         [
             'text' => 'Relatorio de Agendamento Semanal',
             'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosSemanal',
-            'icon' => 'fal fa-file-chart-line',  
+            'icon' => 'fas fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
         ],
         [
             'text' => 'Relatorio de Agendamento Mensal',
             'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosMensal',
-            'icon' => 'fal fa-file-chart-line',  
+            'icon' => 'fal fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
         ],
         [
             'text' => 'Relatorio de Clientes',
             'url'  => 'http://127.0.0.1:8000/relatorios/clientes',
-            'icon' => 'fal fa-file-chart-line',  
+            'icon' => 'fad fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
         ],
-       
-       
+
+
     ],
 
     /*

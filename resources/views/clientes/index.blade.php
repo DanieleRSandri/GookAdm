@@ -4,8 +4,6 @@
     <div style="text-align:center">
         <h4>Listagem de Clientes</h4>
     </div>
-
-
     {!! Form::open(['name' => 'form_name', 'route' => 'clientes']) !!}
     <div calss="sidebar-form">
         <div class="input-group">

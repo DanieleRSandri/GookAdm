@@ -42,11 +42,9 @@
         {!! Form::select('id_quadra',\App\Models\Quadra::orderBy('nome')->pluck('nome', 'id')->toArray(), $agenda->id_quadra ,['class' => 'form-control', 'required']) !!}
     </div>
  
-
     <div class="form-group">
         {!! Form::label('id_cliente', 'Cliente:') !!}
-        {!! Form::select('id_quadra',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(), $agenda->id_cliente ,['class' => 'form-control', 'required']) !!}
-  
+        {!! Form::select('id_cliente',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(),  $agenda->id_cliente ,['class' => 'form-control', 'placeholder' => 'Selecione um cliente']) !!}
     </div>
 
     <div class="form-group" style="text-align:center" >
