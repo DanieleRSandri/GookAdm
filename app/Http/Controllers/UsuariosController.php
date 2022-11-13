@@ -25,6 +25,8 @@ class UsuariosController extends Controller
 
     public function store(UserRequest $request){
         $novo_user= $request->all();
+
+        $novo_user['password'] = bcrypt($novo_user['password']);
         User::create($novo_user);
 
         return redirect('usuarios');

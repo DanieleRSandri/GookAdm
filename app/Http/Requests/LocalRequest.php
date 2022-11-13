@@ -24,12 +24,23 @@ class LocalRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:5',
-            'endereco' => 'required|min:5' ,
-            'telefone' => 'required|min:5',
-            'cnpj' => 'required|min:5' 
+            'nome' => 'required',
+            'endereco' => 'required' ,
+            'telefone' => 'required|min:11|numeric',
+            'cnpj' => 'required|min:14|numeric' 
 
         ];
 
        }
+
+       public function messages()
+    {
+        return [            
+            'name.required' => 'O nome do local deve ser informado.',
+            'endereco.required' => 'O e-endereço  do local deve ser informado.',
+            'telefone.required' => 'O telefone deve ser informado.',
+            'cnpj.required' => 'O CNPJ deve ser informado.',
+
+        ];
+    }
 }

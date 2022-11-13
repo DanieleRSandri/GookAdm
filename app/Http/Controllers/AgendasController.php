@@ -100,7 +100,10 @@ class AgendasController extends Controller
             Agenda::create($novo_agendamento);
             return redirect('agendas');
         else :
-            echo '<script> alert ("Ja existe um agendamento entre os horarios informados"); location.href=("http://127.0.0.1:8000/agendas/create")</script>';
+            return redirect()->route('agendas.create', ['id' => $request->id])
+                ->withErrors(['error' => 'Ja existe um agendamento entre os horarios informados.']);
+
+            // echo '<script> alert ("Ja existe um agendamento entre os horarios informados"); location.href=("http://127.0.0.1:8000/agendas/create")</script>';
 
         endif;
     }
@@ -139,7 +142,9 @@ class AgendasController extends Controller
             Agenda::find($id)->update($request->all());
             return redirect('agendas');
         else :
-            echo '<script> alert ("Ja existe um agendamento entre os horarios informados");</script>';
+            return redirect()->route('agendas.edit', ['id' => $request->id])
+            ->withErrors(['error' => 'Ja existe um agendamento entre os horarios informados.']);
+            // echo '<script> alert ("Ja existe um agendamento entre os horarios informados");</script>';
         endif;
     }
 }

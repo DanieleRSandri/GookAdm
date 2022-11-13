@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="text-align:center">
-    <h4>Nova Usuario</h4>
+    <h4>Novo Usuário</h4>
 </div> 
     @if ($errors->any())
         <ul class='alert alert-danger'>
@@ -27,11 +27,11 @@
 
     <div class="form-group">
         {!! Form::label('password', 'Senha:') !!}
-        {!! Form::text('password', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::password('password', null, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('tipoUsuario', 'Tipo Usuario:') !!}
+        {!! Form::label('tipoUsuario', 'Tipo Usuário:') !!}
         {!! Form::select('tipoUsuario',
                             array('Administrador'=>'Administrador',
                                 'Usuario'=> 'Usuario'),

@@ -31,4 +31,16 @@ class AgendaRequest extends FormRequest
             'id_quadra'=> 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [            
+            'data.required' => 'A data deve ser informado.',
+            'status.required' => 'O status deve ser informado.',
+            'horario_inicio.required' => 'O horario inicio deve ser informado.',
+            'horario_final.required' => 'O horario final deve ser informado.',
+            'id_quadra.required' => 'A quadra deve ser informado.',
+
+        ];
+    }
 }

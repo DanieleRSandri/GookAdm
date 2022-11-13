@@ -25,10 +25,6 @@
         {!! Form::text('precoUnitario',$produto->precoUnitario,['class'=>'form-control', 'require']) !!}
         </div>
 
-        <div class="form-group">
-            {!! Form::label('quantidade', 'Quantidade:') !!}
-            {!! Form::text('quantidade',$produto->quantidade,['class'=>'form-control', 'require']) !!}
-            </div>
 
         <div class="form-group" style="text-align:center">
             {!! Form::submit('Editar Produto', ['class'=>'btn btn-outline-success']) !!}

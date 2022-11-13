@@ -2,7 +2,7 @@
 
 @section('content')
 <div style="text-align:center">
-    <h4>Editando Usuario:{{$user->name}} </h4>
+    <h4>Editando Usuário:{{$user->name}} </h4>
 </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('tipoUsuario', 'Tipo Usuario:') !!}
+        {!! Form::label('tipoUsuario', 'Tipo Usuário:') !!}
         {!! Form::select('tipoUsuario',
                             array('Administrador'=>'Administrador',
                                 'Usuario'=> 'Usuario'),

@@ -46,9 +46,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('store',      ['as' => 'produtos.store',    'uses' => 'App\Http\Controllers\ProdutosController@store']);
     });
 
-    Route::group(['prefix' => 'consumo', 'where' => ['id' => '[0-9]+']], function () {
-        Route::get('',            ['as' => 'consumo',          'uses' => 'App\Http\Controllers\ConsumoController@index']);
-        Route::get('create',      ['as' => 'consumo.create',    'uses' => 'App\Http\Controllers\ConsumoController@create']);
+    Route::group(['prefix' => 'consumos', 'where' => ['id' => '[0-9]+']], function () {
+        Route::get('',            ['as' => 'consumos',          'uses' => 'App\Http\Controllers\ConsumoController@index']);
+        Route::get('create',      ['as' => 'consumos.create',    'uses' => 'App\Http\Controllers\ConsumoController@create']);
+        Route::post('store',      ['as' => 'consumos.store',    'uses' => 'App\Http\Controllers\ConsumoController@store']);
     });
 
     Route::group(['prefix' => 'clientes', 'where' => ['id' => '[0-9]+']], function () {

@@ -30,4 +30,15 @@ class ClienteRequest extends FormRequest
             'cpf' =>'required|numeric',
         ];
     }
+
+    public function messages()
+    {
+        return [            
+            'nome.required' => 'O nome deve ser informado.',
+            'endereco.required' => 'O endereço deve ser informado.',
+            'telefone.required' => 'O telefone deve ser informado.',
+            'cpf.required' => 'O CPF deve ser informado.',
+
+        ];
+    }
 }

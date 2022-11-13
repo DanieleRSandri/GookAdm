@@ -25,8 +25,7 @@ class ProdutoRequest extends FormRequest
     {
         return [
             'descricao' => 'required|min:5',
-            'precoUnitario' => 'required',
-            'quantidade' => 'required',
+            'precoUnitario' => 'required'
         ];
     }
 }

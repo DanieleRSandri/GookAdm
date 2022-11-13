@@ -25,10 +25,21 @@ class UserRequest extends FormRequest
     {
         return [
             
-            'name' => 'required|min:5',
-            'email' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
             'tipoUsuario' =>'required',
            ];
+    }
+
+    public function messages()
+    {
+        return [            
+            'name.required' => 'O nome do usuário deve ser informado!',
+            'email.required' => 'O e-mail do usuário deve ser informado!',
+            'email.email' => 'O e-mail é inválido',
+            'password.required' => 'O senha deve ser informado!',
+            'tipoUsuario.required' => 'O tipo de usuário deve ser informado!',
+        ];
     }
 }

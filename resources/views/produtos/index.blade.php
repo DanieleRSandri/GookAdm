@@ -23,7 +23,6 @@
     <thead>
     <th>Descrição</th>
             <th>Preço Unitário</th>
-            <th>Quantidade em Estoque</th>
                 <th>Ações</th>
     </thead>
 
@@ -32,7 +31,6 @@
         <tr>
             <td>{{ $produto->descricao}}</td>
             <td>{{ $produto->precoUnitario}}</td>
-            <td>{{ $produto->quantidade}}</td>
             <td>
                 <a href="{{ route('produtos.edit', ['id'=>$produto->id]) }}" class="btn btn-outline-success">Editar</a>
                 <a href="#" onclick="return ConfirmaExclusao({{ $produto->id }})"

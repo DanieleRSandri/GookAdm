@@ -320,12 +320,18 @@ return [
             'icon' => 'fas fa-users-cog',
             'can' => ['Administrador'],
         ],
-        // [
-        //     'text' => 'Produtos',
-        //     'url'  => 'http://127.0.0.1:8000/produtos',
-        //     'icon' => 'fas fa-shopping-cart',
-        //     'can' => ['Administrador'],
-        // ],
+        [
+            'text' => 'Produtos',
+            'url'  => 'http://127.0.0.1:8000/produtos',
+            'icon' => 'fas fa-shopping-cart',
+            'can' => ['Administrador'],
+        ],
+        [
+            'text' => 'Consumos',
+            'url'  => 'http://127.0.0.1:8000/consumos',
+            'icon' => 'fas fa-shopping-cart',
+            'can' => ['Administrador', 'Usuario'],
+        ],
         [
             'text' => 'Relatorio de Agendamento Diario',
             'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDiario',

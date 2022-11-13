@@ -32,7 +32,8 @@
         {!! Form::select('status',
                             array('Disponivel'=>'Disponivel',
                                 'Agendado'=> 'Agendado',
-                                'Cancelado'=> 'Cancelado'),
+                                'Cancelado'=> 'Cancelado',
+                                'NaoCompareceu'=> 'Não Compareceu'),
                                 $agenda->status,['class'=>'form-control', 'require']) !!}
         </div>
 

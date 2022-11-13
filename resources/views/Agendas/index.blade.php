@@ -15,7 +15,9 @@
                 $eventColor = '#006400';
             } else if ($status == 'Agendado') {
                 $eventColor = '#FFD700';
-            } else {
+            } else if ($status == 'NaoCompareceu') {
+                $eventColor = '#778899';
+            }else {
                 $eventColor = '#FF0000';
             }
             return $eventColor;
@@ -37,10 +39,22 @@
                     novo: {
                         text: 'Novo Agendamento',
                         click: function() {
-                            window.location.href = ("http://127.0.0.1:8000/agendas/create");
+                            window.location.href = ("agendas/create");
                         }
                     }
                 },
+                dateClick: function(info) {
+        //   if (info.allDay) {
+        //     $('#FechaInicio').val(info.dateStr);
+        //     $('#FechaFin').val(info.dateStr);
+        //   } senão {
+        //     let fechaHora = info.dateStr.split("T");
+        //     $('#FechaInicio').val(fechaHora[0]);
+        //     $('#FechaFin').val(fechaHora[0]);
+        //   }
+
+        window.location.href = ("agendas/create");
+        },
                 events: [
                     @foreach ($agendas as $agendas)
                         {
@@ -48,7 +62,6 @@
                             title: '{{ $agendas->status }}',
                             start: '{{ $agendas->data }}T{{ $agendas->horario_inicio }}',
                             end: '{{ $agendas->data }}T{{ $agendas->horario_final }}',
-                            // url: 'agendas/{{ $agendas->id }}/edit',
                             extendedProps: {
                                 cliente: '{{ isset($agendas->id_cliente) ? $agendas->cliente->nome : '-' }}',
                                 quadra: '{{ isset($agendas->id_quadra) ? $agendas->quadra->nome : '-' }}'
@@ -58,9 +71,7 @@
                     @endforeach
                 ],
                 eventClick: function(info) {
-                    // window.open(info.event.url);
-                    // window.location.href(info.event.url);
-
+                    
                     info.jsEvent.preventDefault(); // don't let the browser navigate          
                     $('#vizualizar #id').text(info.event.id)
                     $('#vizualizar #title').text(info.event.title)
@@ -68,10 +79,8 @@
                     $('#vizualizar #end').text(info.event.end.toLocaleString())
                     $('#vizualizar #idQuadra').text(info.event.extendedProps.quadra)
                     $('#vizualizar #idCliente').text(info.event.extendedProps.cliente)
-                    // $('#vizualizar #link').text(info.event.url)
                     $('#vizualizar').modal('show');
-
-                    $("#taga").attr("href", 'agendas/'+info.event.id+'/edit')
+                    $("#edit").attr("href", 'agendas/'+info.event.id+'/edit')
                    
                 },
             });
@@ -111,7 +120,7 @@
 
                         </dl>
                         <div class="form-group" style="text-align:center">
-                            <a id="taga" href="" class="btn btn-outline-success">Editar</a>
+                            <a id="edit" href="" class="btn btn-outline-success">Editar</a>
                         </div>
                     </div>
 
