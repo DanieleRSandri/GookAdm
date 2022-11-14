@@ -5,14 +5,14 @@
         <h4>Novo Local</h4>
     </div>
 
-@if ($errors->any())
-<ul class='alert alert-danger'>
-    @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-    @endforeach
+    @if ($errors->any())
+        <ul class='alert alert-danger'>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
 
-</ul>
-@endif
+        </ul>
+    @endif
 
     {!! Form::open(['route' => 'locais.store']) !!}
 

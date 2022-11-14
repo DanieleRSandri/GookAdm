@@ -1,9 +1,9 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<div style="text-align:center">
-    <h4>Editando Quadra: {{ $quadra->descricao }}</h4>
-</div> 
+    <div style="text-align:center">
+        <h4>Editando Quadra: {{ $quadra->descricao }}</h4>
+    </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -13,7 +13,7 @@
         </ul>
     @endif
 
-    {!! Form::open(['url'=>"quadras/$quadra->id/update", 'method'=>'put']) !!}
+    {!! Form::open(['url' => "quadras/$quadra->id/update", 'method' => 'put']) !!}
 
     <div class="form-group">
         {!! Form::label('nome', 'Nome:') !!}
@@ -32,8 +32,13 @@
 
     <div class="form-group">
         {!! Form::label('id_local', 'Local:') !!}
-        {!! Form::select('id_local',\App\Models\Locais::orderBy('nome')->pluck('nome', 'id')->toArray(), $quadra->id_local ,['class' => 'form-control', 'required']) !!}
-  
+        {!! Form::select(
+            'id_local',
+            \App\Models\Locais::orderBy('nome')->pluck('nome', 'id')->toArray(),
+            $quadra->id_local,
+            ['class' => 'form-control', 'required'],
+        ) !!}
+
     </div>
 
     <div class="form-group" style="text-align:center">

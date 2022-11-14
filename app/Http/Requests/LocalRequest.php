@@ -25,17 +25,16 @@ class LocalRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'endereco' => 'required' ,
+            'endereco' => 'required',
             'telefone' => 'required|min:11|numeric',
-            'cnpj' => 'required|min:14|numeric' 
+            'cnpj' => 'required|min:14|numeric'
 
         ];
+    }
 
-       }
-
-       public function messages()
+    public function messages()
     {
-        return [            
+        return [
             'name.required' => 'O nome do local deve ser informado.',
             'endereco.required' => 'O e-endereço  do local deve ser informado.',
             'telefone.required' => 'O telefone deve ser informado.',

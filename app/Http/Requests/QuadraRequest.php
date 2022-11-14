@@ -26,14 +26,14 @@ class QuadraRequest extends FormRequest
         return [
             'nome' => 'required|min:5',
             'tipo' => 'required|min:5',
-            'valorTempo' =>'required',
-            'id_local' =>'required',
+            'valorTempo' => 'required',
+            'id_local' => 'required',
         ];
     }
 
     public function messages()
     {
-        return [            
+        return [
             'nome.required' => 'O nome da quadra deve ser informado.',
             'tipo.required' => 'O tipo da quadra deve ser informado.',
             'valorTempo.required' => 'O valor do tempo deve ser informado.',

@@ -29,21 +29,22 @@
         </thead>
 
         <tbody>
-            @foreach($usuarios as $usuario)
-        <tr>
-            <td>{{ $usuario->name}}</td>
-            <td>{{ $usuario->email}}</td>
-            <td>{{ $usuario->tipoUsuario}}</td>
-            <td>
-                <a href="{{ route('usuarios.edit', ['id' => $usuario->id]) }}"
-                    class="btn btn-outline-success">Editar</a>
-                    <a href="#" onclick="return ConfirmaExclusao({{ $usuario->id }})"
-                        class="btn btn-outline-danger">Remover</a>
-            </td>
-        </tr>
-        @endforeach
+            @foreach ($usuarios as $usuario)
+                <tr>
+                    <td>{{ $usuario->name }}</td>
+                    <td>{{ $usuario->email }}</td>
+                    <td>{{ $usuario->tipoUsuario }}</td>
+                    <td>
+                        <a href="{{ route('usuarios.edit', ['id' => \Crypt::encrypt($usuario->id)]) }}"
+                            class="btn btn-outline-success">Editar</a>
+                        <a href="#" onclick="return ConfirmaExclusao({{ $usuario->id }})"
+                            class="btn btn-outline-danger">Remover</a>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
+
     <div class="form-group" style="text-align:center">
         <a class="btn btn-outline-primary" href="{{ route('usuarios.create') }}">Novo Usuario</a>
     </div>
@@ -51,5 +52,5 @@
 @stop
 
 @section('table-delete')
-"usuarios"
+    "usuarios"
 @stop

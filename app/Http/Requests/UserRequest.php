@@ -24,17 +24,17 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'tipoUsuario' =>'required',
-           ];
+            'tipoUsuario' => 'required',
+        ];
     }
 
     public function messages()
     {
-        return [            
+        return [
             'name.required' => 'O nome do usuário deve ser informado!',
             'email.required' => 'O e-mail do usuário deve ser informado!',
             'email.email' => 'O e-mail é inválido',

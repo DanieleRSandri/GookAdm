@@ -1,9 +1,9 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<div style="text-align:center">
-    <h4>Novo Cliente</h4>
-</div>
+    <div style="text-align:center">
+        <h4>Novo Cliente</h4>
+    </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -23,11 +23,11 @@
 
     <div class="form-group">
         {!! Form::label('cpf', 'Cpf:') !!}
-        {!! Form::text('cpf', null, ['class' => 'form-control', 'require']) !!} 
+        {!! Form::text('cpf', null, ['class' => 'form-control', 'require']) !!}
 
 
-       
-			
+
+
     </div>
 
     <div class="form-group">

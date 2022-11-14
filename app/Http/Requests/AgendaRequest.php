@@ -26,15 +26,15 @@ class AgendaRequest extends FormRequest
         return [
             'data' => 'required|date',
             'status' => 'required',
-            'horario_inicio'=> 'required',
-            'horario_final'=> 'required',
-            'id_quadra'=> 'required'
+            'horario_inicio' => 'required',
+            'horario_final' => 'required',
+            'id_quadra' => 'required'
         ];
     }
 
     public function messages()
     {
-        return [            
+        return [
             'data.required' => 'A data deve ser informado.',
             'status.required' => 'O status deve ser informado.',
             'horario_inicio.required' => 'O horario inicio deve ser informado.',

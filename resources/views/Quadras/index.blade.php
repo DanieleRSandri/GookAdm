@@ -27,14 +27,14 @@
             <th>Ações</th>
         </thead>
         <tbody>
-            @foreach($quadras as $quadra)
+            @foreach ($quadras as $quadra)
                 <tr>
                     <td>{{ $quadra->nome }}</td>
                     <td>{{ $quadra->tipo }}</td>
                     <td>{{ $quadra->valorTempo }}</td>
                     <td>{{ $quadra->local->nome }}</td>
                     <td>
-                        <a href="{{ route('quadras.edit', ['id' => $quadra->id]) }}"
+                        <a href="{{ route('quadras.edit', ['id' => \Crypt::encrypt($quadra->id)]) }}"
                             class="btn btn-outline-success">Editar</a>
                         <a href="#" onclick="return ConfirmaExclusao({{ $quadra->id }})"
                             class="btn btn-outline-danger">Remover</a>
@@ -49,5 +49,5 @@
 @stop
 
 @section('table-delete')
-"quadras"
+    "quadras"
 @stop

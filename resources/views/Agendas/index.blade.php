@@ -17,7 +17,7 @@
                 $eventColor = '#FFD700';
             } else if ($status == 'NaoCompareceu') {
                 $eventColor = '#778899';
-            }else {
+            } else {
                 $eventColor = '#FF0000';
             }
             return $eventColor;
@@ -44,17 +44,17 @@
                     }
                 },
                 dateClick: function(info) {
-        //   if (info.allDay) {
-        //     $('#FechaInicio').val(info.dateStr);
-        //     $('#FechaFin').val(info.dateStr);
-        //   } senão {
-        //     let fechaHora = info.dateStr.split("T");
-        //     $('#FechaInicio').val(fechaHora[0]);
-        //     $('#FechaFin').val(fechaHora[0]);
-        //   }
+                    //   if (info.allDay) {
+                    //     $('#FechaInicio').val(info.dateStr);
+                    //     $('#FechaFin').val(info.dateStr);
+                    //   } senão {
+                    //     let fechaHora = info.dateStr.split("T");
+                    //     $('#FechaInicio').val(fechaHora[0]);
+                    //     $('#FechaFin').val(fechaHora[0]);
+                    //   }
 
-        window.location.href = ("agendas/create");
-        },
+                    window.location.href = ("agendas/create");
+                },
                 events: [
                     @foreach ($agendas as $agendas)
                         {
@@ -71,7 +71,7 @@
                     @endforeach
                 ],
                 eventClick: function(info) {
-                    
+
                     info.jsEvent.preventDefault(); // don't let the browser navigate          
                     $('#vizualizar #id').text(info.event.id)
                     $('#vizualizar #title').text(info.event.title)
@@ -80,8 +80,7 @@
                     $('#vizualizar #idQuadra').text(info.event.extendedProps.quadra)
                     $('#vizualizar #idCliente').text(info.event.extendedProps.cliente)
                     $('#vizualizar').modal('show');
-                    $("#edit").attr("href", 'agendas/'+info.event.id+'/edit')
-                   
+                    $("#edit").attr("href", 'agendas/' + info.event.id + '/edit')
                 },
             });
             calendar.render();

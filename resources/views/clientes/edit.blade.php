@@ -1,9 +1,9 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<div style="text-align:center">
-    <h4>Editando Cliente: {{ $cliente->nome }}</h4>
-</div>
+    <div style="text-align:center">
+        <h4>Editando Cliente: {{ $cliente->nome }}</h4>
+    </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -13,7 +13,7 @@
         </ul>
     @endif
 
-    {!! Form::open(['url'=>"clientes/$cliente->id/update", 'method'=>'put']) !!}
+    {!! Form::open(['url' => "clientes/$cliente->id/update", 'method' => 'put']) !!}
 
     <div class="form-group">
         {!! Form::label('nome', 'Nome:') !!}

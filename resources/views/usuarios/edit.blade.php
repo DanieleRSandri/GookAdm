@@ -1,9 +1,9 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<div style="text-align:center">
-    <h4>Editando Usuário:{{$user->name}} </h4>
-</div>
+    <div style="text-align:center">
+        <h4>Editando Usuário:{{ $user->name }} </h4>
+    </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -13,7 +13,7 @@
         </ul>
     @endif
 
-    {!! Form::open(['url'=>"usuarios/$user->id/update", 'method'=>'put']) !!}
+    {!! Form::open(['url' => "usuarios/$user->id/update", 'method' => 'put']) !!}
 
     <div class="form-group">
         {!! Form::label('name', 'Nome:') !!}
@@ -22,21 +22,23 @@
 
     <div class="form-group">
         {!! Form::label('email', 'Email:') !!}
-        {!! Form::text('email', $user->email , ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('email', $user->email, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('password', 'Senha:') !!}
-        {!! Form::text('password', $user->password , ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('password', $user->password, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('tipoUsuario', 'Tipo Usuário:') !!}
-        {!! Form::select('tipoUsuario',
-                            array('Administrador'=>'Administrador',
-                                'Usuario'=> 'Usuario'),
-                                $user->tipoUsuario ,['class'=>'form-control', 'require']) !!}
-        </div>
+        {!! Form::select(
+            'tipoUsuario',
+            ['Administrador' => 'Administrador', 'Usuario' => 'Usuario'],
+            $user->tipoUsuario,
+            ['class' => 'form-control', 'require'],
+        ) !!}
+    </div>
 
     <div class="form-group" style="text-align:center">
         {!! Form::submit('Editar Usuario  ', ['class' => 'btn btn-outline-success']) !!}

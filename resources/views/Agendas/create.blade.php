@@ -13,7 +13,7 @@
     @endif
 
     {!! Form::open(['url' => 'agendas/store']) !!}
-    
+
     <div class="form-group">
         {!! Form::label('data', 'Data') !!}
         {!! Form::date('data', null, ['class' => 'form-control', 'require']) !!}
@@ -31,22 +31,37 @@
 
     <div class="form-group">
         {!! Form::label('status', 'Status') !!}
-        {!! Form::select('status',
-                            array('Disponivel'=>'Disponivel',
-                                'Agendado'=> 'Agendado',
-                                'Cancelado'=> 'Cancelado',
-                                'NaoCompareceu'=> 'Não Compareceu'),
-                            'Disponivel',['class'=>'form-control', 'require']) !!}
-        </div>
-        
+        {!! Form::select(
+            'status',
+            [
+                'Disponivel' => 'Disponivel',
+                'Agendado' => 'Agendado',
+                'Cancelado' => 'Cancelado',
+                'NaoCompareceu' => 'Não Compareceu',
+            ],
+            'Disponivel',
+            ['class' => 'form-control', 'require'],
+        ) !!}
+    </div>
+
     <div class="form-group">
         {!! Form::label('id_quadra', 'Quadra:') !!}
-        {!! Form::select('id_quadra',\App\Models\Quadra::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'required']) !!}
+        {!! Form::select(
+            'id_quadra',
+            \App\Models\Quadra::orderBy('nome')->pluck('nome', 'id')->toArray(),
+            null,
+            ['class' => 'form-control', 'required'],
+        ) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('id_cliente', 'Cliente:') !!}
-        {!! Form::select('id_cliente',\App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'placeholder' => 'Selecione um cliente']) !!}
+        {!! Form::select(
+            'id_cliente',
+            \App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(),
+            null,
+            ['class' => 'form-control', 'placeholder' => 'Selecione um cliente'],
+        ) !!}
     </div>
 
     <div class="form-group">

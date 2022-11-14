@@ -5,45 +5,43 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LocalRequest;
 use App\Models\Locais;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Crypt;
 
 class LocaisController extends Controller
 {
     function validar_cnpj($cnpj)
-{
-	$cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
-	
-	// Valida tamanho
-	if (strlen($cnpj) != 14)
-		return false;
+    {
+        $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
 
-	// Verifica se todos os digitos são iguais
-	if (preg_match('/(\d)\1{13}/', $cnpj))
-		return false;	
+        // Valida tamanho
+        if (strlen($cnpj) != 14)
+            return false;
 
-	// Valida primeiro dígito verificador
-	for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++)
-	{
-		$soma += $cnpj[$i] * $j;
-		$j = ($j == 2) ? 9 : $j - 1;
-	}
+        // Verifica se todos os digitos são iguais
+        if (preg_match('/(\d)\1{13}/', $cnpj))
+            return false;
 
-	$resto = $soma % 11;
+        // Valida primeiro dígito verificador
+        for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
+            $soma += $cnpj[$i] * $j;
+            $j = ($j == 2) ? 9 : $j - 1;
+        }
 
-	if ($cnpj[12] != ($resto < 2 ? 0 : 11 - $resto))
-		return false;
+        $resto = $soma % 11;
 
-	// Valida segundo dígito verificador
-	for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++)
-	{
-		$soma += $cnpj[$i] * $j;
-		$j = ($j == 2) ? 9 : $j - 1;
-	}
+        if ($cnpj[12] != ($resto < 2 ? 0 : 11 - $resto))
+            return false;
 
-	$resto = $soma % 11;
+        // Valida segundo dígito verificador
+        for ($i = 0, $j = 6, $soma = 0; $i < 13; $i++) {
+            $soma += $cnpj[$i] * $j;
+            $j = ($j == 2) ? 9 : $j - 1;
+        }
 
-	return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
-}
+        $resto = $soma % 11;
+
+        return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
+    }
 
 
     public function index()
@@ -84,9 +82,9 @@ class LocaisController extends Controller
         return $ret;
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $local = Locais::find($id);
+        $local = Locais::find(Crypt::decrypt($request->get('id')));
         return view('locais.edit', compact('local'));
     }
 

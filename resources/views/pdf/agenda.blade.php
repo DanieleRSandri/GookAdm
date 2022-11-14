@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <title>Listagem de Agendamentos</title>
     <meta charset="utf-8">
@@ -7,6 +8,7 @@
     <!-- Importando a folha de estilos do framework por meio da CDN: -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
+
 <body>
     <table class="table table-striped">
         <thead class="thead-dark">
@@ -26,11 +28,12 @@
                     <td>{{ Carbon\Carbon::parse($agenda->data)->format('d-m-Y') }}</td>
                     <td>{{ Carbon\Carbon::parse($agenda->horario_inicio)->format('h:i') }}</td>
                     <td>{{ Carbon\Carbon::parse($agenda->horario_final)->format('h:i') }}</td>
-                    <td>{{ isset($agenda->id_cliente) ? $agenda->cliente->nome : "-" }}</td>
-                    <td>{{ isset($agenda->id_quadra) ? $agenda->quadra->nome : "-" }}</td>
+                    <td>{{ isset($agenda->id_cliente) ? $agenda->cliente->nome : '-' }}</td>
+                    <td>{{ isset($agenda->id_quadra) ? $agenda->quadra->nome : '-' }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </body>
+
 </html>

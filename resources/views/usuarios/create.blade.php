@@ -1,9 +1,9 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<div style="text-align:center">
-    <h4>Novo Usuário</h4>
-</div> 
+    <div style="text-align:center">
+        <h4>Novo Usuário</h4>
+    </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -32,11 +32,8 @@
 
     <div class="form-group">
         {!! Form::label('tipoUsuario', 'Tipo Usuário:') !!}
-        {!! Form::select('tipoUsuario',
-                            array('Administrador'=>'Administrador',
-                                'Usuario'=> 'Usuario'),
-                            'Usuario',['class'=>'form-control', 'require']) !!}
-        </div>
+        {!! Form::select('tipoUsuario', ['Administrador' => 'Administrador', 'Usuario' => 'Usuario'], 'Usuario', ['class' => 'form-control','require',]) !!}
+    </div>
 
     <div class="form-group" style="text-align:center">
         {!! Form::submit('Criar Usuario', ['class' => 'btn btn-outline-success']) !!}

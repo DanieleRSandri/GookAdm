@@ -18,7 +18,7 @@
     {!! Form::close() !!}
     <br>
 
-     <table class="table table-striped">
+    <table class="table table-striped">
         <thead>
             <th>Nome</th>
             <th>CPF</th>
@@ -35,16 +35,16 @@
                     <td>{{ $cliente->telefone }}</td>
                     <td>{{ $cliente->endereco }}</td>
                     <td>
-                        <a href="{{ route('clientes.edit', ['id' => $cliente->id]) }}"
+                        <a href="{{ route('clientes.edit', ['id' => Crypt::encrypt($cliente->id)]) }}"
                             class="btn btn-outline-success">Editar</a>
-                            <a href="#" onclick="return ConfirmaExclusao({{ $cliente->id }})"
-                                class="btn btn-outline-danger">Remover</a>
+                        <a href="#" onclick="return ConfirmaExclusao({{ $cliente->id }})"
+                            class="btn btn-outline-danger">Remover</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $clientes->links("pagination::bootstrap-4") }}
+    {{ $clientes->links('pagination::bootstrap-4') }}
     <div class="form-group" style="text-align:center">
         <a class="btn btn-outline-primary" href="{{ route('clientes.create') }}">Novo Cliente</a>
     </div>
@@ -52,6 +52,5 @@
 @stop
 
 @section('table-delete')
-"clientes"
+    "clientes"
 @stop
-

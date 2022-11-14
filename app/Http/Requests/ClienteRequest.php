@@ -27,13 +27,13 @@ class ClienteRequest extends FormRequest
             'nome' => 'required|min:5',
             'endereco' => 'required',
             'telefone' => 'required|numeric',
-            'cpf' =>'required|numeric',
+            'cpf' => 'required|numeric',
         ];
     }
 
     public function messages()
     {
-        return [            
+        return [
             'nome.required' => 'O nome deve ser informado.',
             'endereco.required' => 'O endereço deve ser informado.',
             'telefone.required' => 'O telefone deve ser informado.',

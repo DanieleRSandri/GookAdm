@@ -1,9 +1,9 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-<div style="text-align:center">
-    <h4>Nova Quadra</h4>
-</div> 
+    <div style="text-align:center">
+        <h4>Nova Quadra</h4>
+    </div>
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -32,7 +32,12 @@
 
     <div class="form-group">
         {!! Form::label('id_local', 'Local:') !!}
-        {!! Form::select('id_local',\App\Models\Locais::orderBy('nome')->pluck('nome', 'id')->toArray(), null ,['class' => 'form-control', 'required']) !!}
+        {!! Form::select(
+            'id_local',
+            \App\Models\Locais::orderBy('nome')->pluck('nome', 'id')->toArray(),
+            null,
+            ['class' => 'form-control', 'required'],
+        ) !!}
     </div>
 
     <div class="form-group" style="text-align:center">
