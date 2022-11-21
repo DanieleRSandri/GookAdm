@@ -1,7 +1,7 @@
 ﻿@extends('adminlte::page')
 
 @section('plugins.Sweetalert2', true)
-@section('plugins.fullcalendar', true)
+{{-- @section('plugins.fullcalendar', true) --}}
 
 @section('js')
     <script>

@@ -26,8 +26,8 @@ class LocalRequest extends FormRequest
         return [
             'nome' => 'required',
             'endereco' => 'required',
-            'telefone' => 'required|min:11|numeric',
-            'cnpj' => 'required|min:14|numeric'
+            'telefone' => 'required',
+            'cnpj' => 'required'
 
         ];
     }

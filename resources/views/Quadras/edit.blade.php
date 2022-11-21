@@ -1,5 +1,18 @@
 ﻿@extends('adminlte::page')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<script>
+    $(document).ready(function($){
+        // $('#money').mask('000.00');
+
+        // $('#money').mask("#.##0,00");
+        $('#money').mask("#.##0.00", { reverse: true });
+    });
+
+</script>
+
 @section('content')
     <div style="text-align:center">
         <h4>Editando Quadra: {{ $quadra->descricao }}</h4>
@@ -27,7 +40,7 @@
 
     <div class="form-group">
         {!! Form::label('valorTempo', 'Valor Tempo:') !!}
-        {!! Form::text('valorTempo', $quadra->valorTempo, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('valorTempo', $quadra->valorTempo, ['class' => 'form-control', 'require', 'id'=>'money']) !!}
     </div>
 
     <div class="form-group">

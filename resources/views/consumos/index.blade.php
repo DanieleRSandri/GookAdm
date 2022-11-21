@@ -10,7 +10,6 @@
                     <th>Cliente</th>
                     <th>Valor Total</th>
                     <th>Produtos</th>
-                    <th>Ações</th>
                 </tr>
             </thead>
 
@@ -21,14 +20,8 @@
                         <td>{{ $consumo->valorTotal }}</td>
                         <td>
                             @foreach ($consumo->consumoProdutos as $a)
-                                <li>{{ $a->consumo->descricao }}</li>
+                                <li>{{ $a->produto->descricao }}</li>
                             @endforeach
-                        </td>
-                        <td>
-                            <a href="{{ route('consumos.edit', ['id' => Crypt::encrypt($consumo->id)]) }}"
-                                class="btn btn-outline-success">Editar</a>
-                            <a href="#" onclick="return ConfirmaExclusao({{ $consumo->id }})"
-                                class="btn btn-outline-danger">Remover</a>
                         </td>
                     </tr>
                 @endforeach

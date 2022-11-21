@@ -1,5 +1,27 @@
 ﻿@extends('adminlte::page')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<script>
+    $(document).ready(function($){
+        $('#cpf').mask('000.000.000-00');
+        $('#phone').focusout(function () {
+        var phone, element;
+        element = $(this);
+        element.unmask();
+        phone = element.val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            element.mask("(99) 99999-9999");
+        } else {
+            element.mask("(99) 9999-99999");
+        }
+        }).trigger('focusout');
+
+
+    });
+</script>
+
 @section('content')
     <div style="text-align:center">
         <h4>Editando Cliente: {{ $cliente->nome }}</h4>
@@ -22,7 +44,7 @@
 
     <div class="form-group">
         {!! Form::label('cpf', 'Cpf:') !!}
-        {!! Form::text('cpf', $cliente->cpf, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('cpf', $cliente->cpf, ['class' => 'form-control', 'require', 'id'=>'cpf']) !!}
     </div>
 
     <div class="form-group">
@@ -32,7 +54,7 @@
 
     <div class="form-group">
         {!! Form::label('telefone', 'Telefone:') !!}
-        {!! Form::text('telefone', $cliente->telefone, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('telefone', $cliente->telefone, ['class' => 'form-control', 'require', 'id'=>'phone']) !!}
     </div>
     <div class="form-group" style="text-align:center">
         {!! Form::submit('Editar Cliente', ['class' => 'btn btn-outline-success']) !!}

@@ -1,5 +1,15 @@
 ﻿@extends('adminlte::page')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+<script>
+    $(document).ready(function($){
+        $('#cnpj').mask('00.000.000/0000-00');
+        $('#phone').mask('(00) 00000-0000');
+    });
+</script>
+
 @section('content')
     <div style="text-align:center">
         <h4>Editando Local: {{ $local->nome }}</h4>
@@ -27,12 +37,12 @@
 
     <div class="form-group">
         {!! Form::label('telefone', 'Telefone:') !!}
-        {!! Form::text('telefone', $local->telefone, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('telefone', $local->telefone, ['class' => 'form-control', 'require', 'id'=>'phone']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('cnpj', 'CNPJ:') !!}
-        {!! Form::text('cnpj', $local->cnpj, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('cnpj', $local->cnpj, ['class' => 'form-control', 'require', 'id'=>'cnpj']) !!}
     </div>
 
     <div class="form-group" style="text-align:center">
