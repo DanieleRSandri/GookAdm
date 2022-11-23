@@ -75,6 +75,16 @@
     </div>
 
     <div class="form-group">
+        {!! Form::label('id_users', 'Agendamento feito por:') !!}
+        {!! Form::select(
+            'id_users',
+            \App\Models\User::where("name", auth()->user()->name)->pluck('name', 'id')->toArray(),
+            null,
+            ['class' => 'form-control', 'required'],
+        ) !!}
+    </div>
+
+    <div class="form-group">
         {!! Form::submit('Criar Agendamento', ['class' => 'btn btn-outline-success']) !!}
         {!! Form::reset('Limpar', ['class' => 'btn btn-outline-secondary']) !!}
         <a class="btn btn-outline-danger" href="{{ route('agendas') }}">Voltar</a>

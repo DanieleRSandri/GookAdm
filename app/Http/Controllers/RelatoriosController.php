@@ -54,6 +54,50 @@ class RelatoriosController extends Controller
         return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
     }
 
+    public function agendamentosDisponiveis()
+    {
+        $agendas = Agenda::where("status", 'Disponivel')->get();
+
+        if ($agendas->count() > 0) {
+            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
+            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
+        }
+        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+    }
+
+      public function agendamentosAgendado()
+    {
+        $agendas = Agenda::where("status", 'Agendado')->get();
+
+        if ($agendas->count() > 0) {
+            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
+            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
+        }
+        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+    }
+
+    public function agendamentosCancelado()
+    {
+        $agendas = Agenda::where("status", 'Cancelado')->get();
+
+        if ($agendas->count() > 0) {
+            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
+            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
+        }
+        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+    }
+
+    public function agendamentosNaoCompareceu()
+    {
+        $agendas = Agenda::where("status", 'NaoCompareceu')->get();
+
+        if ($agendas->count() > 0) {
+            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
+            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
+        }
+        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+    }
+
     public function cliente()
     {
         $clientes = Cliente::orderBy('nome')->get();

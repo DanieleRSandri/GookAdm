@@ -23,6 +23,8 @@ class CreateAgendasTable extends Migration
             $table->foreign('id_cliente')->references('id')->on('clientes');
             $table->bigInteger('id_quadra')->unsigned()->nullable();
             $table->foreign('id_quadra')->references('id')->on('quadras');
+            $table->bigInteger('id_users')->unsigned()->nullable();
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

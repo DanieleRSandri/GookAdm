@@ -351,11 +351,35 @@ return [
             'can' => ['Administrador', 'Usuario'],
         ],
         [
+            'text' => 'Relatorio de Agendamentos Disponiveis',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDisponiveis',
+            'icon' => 'fad fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
+        ],
+        [
+            'text' => 'Relatorio de Agendamentos Agendados',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosAgendado',
+            'icon' => 'fad fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
+        ],
+        [
+            'text' => 'Relatorio de Agendamentos Cancelado',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosCancelado',
+            'icon' => 'fad fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
+        ],
+        [
+            'text' => 'Relatorio de Agendamentos de clientes que não compareceu',
+            'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosNaoCompareceu',
+            'icon' => 'fad fa-file-chart-line',
+            'can' => ['Administrador', 'Usuario'],
+        ],
+        [
             'text' => 'Relatorio de Clientes',
             'url'  => 'http://127.0.0.1:8000/relatorios/clientes',
             'icon' => 'fad fa-file-chart-line',
             'can' => ['Administrador', 'Usuario'],
-        ],
+        ]
 
 
     ],

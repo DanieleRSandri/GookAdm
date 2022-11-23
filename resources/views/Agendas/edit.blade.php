@@ -63,6 +63,16 @@
         ) !!}
     </div>
 
+    <div class="form-group">
+        {!! Form::label('id_users', 'Agendamento feito por:') !!}
+        {!! Form::select(
+            'id_users',
+            \App\Models\User::where("name", auth()->user()->name)->pluck('name', 'id')->toArray(),
+            $agenda->id_users,
+            ['class' => 'form-control', 'required'],
+        ) !!}
+    </div>
+
     <div class="form-group" style="text-align:center">
         {!! Form::submit('Editar Agendamento', ['class' => 'btn btn-outline-success']) !!}
         <a class="btn btn-outline-secondary" href="{{ route('agendas') }}">Voltar</a>

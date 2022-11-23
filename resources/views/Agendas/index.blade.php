@@ -32,27 +32,19 @@
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
+                    // right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
+                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
 
                 },
-                customButtons: {
-                    novo: {
-                        text: 'Novo Agendamento',
-                        click: function() {
-                            window.location.href = ("agendas/create");
-                        }
-                    }
-                },
+                // customButtons: {
+                //     novo: {
+                //         text: 'Novo Agendamento',
+                //         click: function() {
+                //             window.location.href = ("agendas/create");
+                //         }
+                //     }
+                // },
                 dateClick: function(info) {
-                    //   if (info.allDay) {
-                    //     $('#FechaInicio').val(info.dateStr);
-                    //     $('#FechaFin').val(info.dateStr);
-                    //   } senão {
-                    //     let fechaHora = info.dateStr.split("T");
-                    //     $('#FechaInicio').val(fechaHora[0]);
-                    //     $('#FechaFin').val(fechaHora[0]);
-                    //   }
-
                     window.location.href = ("agendas/create");
                 },
                 events: [
@@ -77,8 +69,8 @@
                     $('#vizualizar #title').text(info.event.title)
                     $('#vizualizar #start').text(info.event.start.toLocaleString())
                     $('#vizualizar #end').text(info.event.end.toLocaleString())
-                    $('#vizualizar #idQuadra').text(info.event.extendedProps.quadra)
-                    $('#vizualizar #idCliente').text(info.event.extendedProps.cliente)
+                    $('#vizualizar #Quadra').text(info.event.extendedProps.quadra)
+                    $('#vizualizar #Cliente').text(info.event.extendedProps.cliente)
                     $('#vizualizar').modal('show');
                     $("#edit").attr("href", 'agendas/' + info.event.id + '/edit')
                 },
@@ -113,10 +105,9 @@
                             <dt class="col-sm-3">Fim do Evento:</dt>
                             <dd class="col-sm-9" id="end"></dd>
                             <dt class="col-sm-3"> Quadra:</dt>
-                            <dd class="col-sm-9" id="idQuadra"></dd>
+                            <dd class="col-sm-9" id="Quadra"></dd>
                             <dt class="col-sm-3"> Cliente:</dt>
-                            <dd class="col-sm-9" id="idCliente"></dd>
-
+                            <dd class="col-sm-9" id="Cliente"></dd>
                         </dl>
                         <div class="form-group" style="text-align:center">
                             <a id="edit" href="" class="btn btn-outline-success">Editar</a>

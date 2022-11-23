@@ -14,6 +14,6 @@ class LocalSeeder extends Seeder
      */
     public function run()
     {
-        Locais::create(['nome' => 'Arena1','endereco'=>'Avenida Rui Barbosa, 1457','telefone'=>'54999867130','cnpj'=>'72495054000186']);
+        Locais::create(['nome' => 'Arena1','endereco'=>'Avenida Rui Barbosa, 1457','telefone'=>'(54) 99986-7130','cnpj'=>'72.495.054/0001-86']);
     }
 }
