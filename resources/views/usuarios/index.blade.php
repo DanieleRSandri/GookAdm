@@ -1,11 +1,6 @@
 ﻿@extends('layouts.default')
-
 @section('content')
-
-    <div style="text-align:center">
-        <h4>Listagem de Usuários</h4>
-    </div>
-
+<h4 style="padding: 15px; text-align: center">Listagem de Usuários.</h4>
     {!! Form::open(['name' => 'form_name', 'route' => 'usuarios']) !!}
     <div calss="sidebar-form">
         <div class="input-group">
@@ -19,7 +14,6 @@
     </div>
     {!! Form::close() !!}
     <br>
-
     <table class="table table-striped">
         <thead>
             <th>Nome</th>
@@ -44,11 +38,10 @@
             @endforeach
         </tbody>
     </table>
-
     <div class="form-group" style="text-align:center">
         <a class="btn btn-outline-primary" href="{{ route('usuarios.create') }}">Novo Usuario</a>
     </div>
-
+    
 @stop
 
 @section('table-delete')

@@ -320,16 +320,20 @@ return [
             'icon' => 'fas fa-users-cog',
             'can' => ['Administrador'],
         ],
+        // [
+        //     'text' => 'Produtos',
+        //     'url'  => 'http://127.0.0.1:8000/produtos',
+        //     'icon' => 'fas fa-shopping-cart',
+        //     'can' => ['Administrador'],
+        // ],
+        // [
+        //     'text' => 'Consumos',
+        //     'url'  => 'http://127.0.0.1:8000/consumos',
+        //     'icon' => 'fas fa-shopping-cart',
+        //     'can' => ['Administrador'],
+        // ],
         [
-            'text' => 'Produtos',
-            'url'  => 'http://127.0.0.1:8000/produtos',
-            'icon' => 'fas fa-shopping-cart',
-            'can' => ['Administrador'],
-        ],
-        [
-            'text' => 'Consumos',
-            'url'  => 'http://127.0.0.1:8000/consumos',
-            'icon' => 'fas fa-shopping-cart',
+            'header' => 'BLOG',
             'can' => ['Administrador', 'Usuario'],
         ],
         [
