@@ -26,17 +26,17 @@
 
     <div class="form-group">
         {!! Form::label('data', 'Data') !!}
-        {!! Form::date('data', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('data', $data, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('horario_inicio', 'Horario inicial:') !!}
-        {!! Form::text('horario_inicio', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('horario_inicio', $horario_inicio, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('horario_final', 'Horario Final:') !!}
-        {!! Form::text('horario_final', null, ['class' => 'form-control', 'require']) !!}
+        {!! Form::text('horario_final', $horario_final, ['class' => 'form-control', 'require']) !!}
     </div>
 
     <div class="form-group">

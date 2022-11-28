@@ -332,10 +332,8 @@ return [
         //     'icon' => 'fas fa-shopping-cart',
         //     'can' => ['Administrador'],
         // ],
-        [
-            'header' => 'BLOG',
-            'can' => ['Administrador', 'Usuario'],
-        ],
+        ['header' => 'Relatorios'],
+       
         [
             'text' => 'Relatorio de Agendamento Diario',
             'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDiario',
@@ -384,8 +382,6 @@ return [
             'icon' => 'fad fa-file-chart-line',
             'can' => ['Administrador', 'Usuario'],
         ]
-
-
     ],
 
     /*

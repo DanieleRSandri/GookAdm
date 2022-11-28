@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgendaRequest;
 use App\Models\Agenda;
+use Carbon\Carbon;
 
 class AgendasController extends Controller
 {
     public function VerificaHorario($data, $horaInicial, $horaFinal, $status, $id_quadra)
     {
-        // dd($status);
         if ($status != 'Cancelado') {
             $horario = Agenda::where("data", $data)
                 ->where('id_quadra', $id_quadra)
@@ -44,8 +44,6 @@ class AgendasController extends Controller
             ->where("horario_inicio", $horaInicial)
             ->where("horario_final", $horaFinal);
 
-        //  dd($agenda->count());
-
         if ($agenda->count() === 0) {
             if ($status != 'Cancelado') {
                 $horario = Agenda::where("data", $data)
@@ -71,7 +69,6 @@ class AgendasController extends Controller
                 }
             }
         }
-
         return true;
     }
 
@@ -81,15 +78,20 @@ class AgendasController extends Controller
         return view('agendas.index', ['agendas' => $agendas]);
     }
 
-    public function create()
+    public function create($dataAgenda)
     {
-        return view('agendas.create');
+        $data =  Carbon::parse($dataAgenda)->format('d-m-Y');
+        $horario_inicio =  Carbon::parse($dataAgenda)->format('H:i');
+        $horario_final =  gmdate('H:i', strtotime($horario_inicio) + strtotime('01:00'));
+
+        return view('agendas.create', ['data' =>  $data, 'horario_inicio' =>  $horario_inicio, 'horario_final' =>  $horario_final]);
     }
 
     public function store(AgendaRequest $request)
     {
         $novo_agendamento = $request->all();
 
+        $novo_agendamento['data'] = Carbon::parse($novo_agendamento['data'])->format('Y-m-d');
         if ($this->VerificaHorario(
             $novo_agendamento['data'],
             $novo_agendamento['horario_inicio'],
@@ -100,7 +102,7 @@ class AgendasController extends Controller
             Agenda::create($novo_agendamento);
             return redirect('agendas');
         else :
-            return redirect()->route('agendas.create', ['id' => $request->id])
+            return redirect()->route('agendas.create', ['id' => $request->id, 'data' => $request->data, 'horario_inicio' => $request->horario_inicio, 'horario_final' => $request->horario_final])
                 ->withErrors(['error' => 'Ja existe um agendamento entre os horarios informados.']);
         endif;
     }
@@ -127,7 +129,7 @@ class AgendasController extends Controller
     public function update(AgendaRequest $request, $id)
     {
         $agendamento = $request->all();
-
+        $agendamento['data'] = Carbon::parse($agendamento['data'])->format('Y-m-d');
         if ($this->VerificaHorarioAgendado(
             $agendamento['data'],
             $agendamento['horario_inicio'],
@@ -139,7 +141,7 @@ class AgendasController extends Controller
             Agenda::find($id)->update($request->all());
             return redirect('agendas');
         else :
-            return redirect()->route('agendas.edit', ['id' => $request->id])
+            return redirect()->route('agendas.edit', ['id' => $request->id, 'data' => $request->data, 'horario_inicio' => $request->horario_inicio, 'horario_final' => $request->horario_final])
                 ->withErrors(['error' => 'Ja existe um agendamento entre os horarios informados.']);
         endif;
     }

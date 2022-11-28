@@ -24,7 +24,6 @@ class RelatoriosController extends Controller
 
     public function agendamentosSemanal()
     {
-
         $sete = date("Y/m/d", strtotime(date("Y-m-d") . "-7days"));
 
         $hoje = date("Y/m/d");
@@ -40,7 +39,6 @@ class RelatoriosController extends Controller
 
     public function agendamentosMensal()
     {
-
         $trinta = date("Y/m/d", strtotime(date("Y-m-d") . "-30days"));
 
         $hoje = date("Y/m/d");
@@ -65,7 +63,7 @@ class RelatoriosController extends Controller
         return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
     }
 
-      public function agendamentosAgendado()
+    public function agendamentosAgendado()
     {
         $agendas = Agenda::where("status", 'Agendado')->get();
 

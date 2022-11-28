@@ -32,20 +32,12 @@
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
-                    // right: 'novo dayGridMonth,timeGridWeek,timeGridDay'
-                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
 
                 },
-                // customButtons: {
-                //     novo: {
-                //         text: 'Novo Agendamento',
-                //         click: function() {
-                //             window.location.href = ("agendas/create");
-                //         }
-                //     }
-                // },
                 dateClick: function(info) {
-                    window.location.href = ("agendas/create");
+                    var $dataDia = info.dateStr;
+                    window.location.href = ("agendas/create/" + $dataDia);
                 },
                 events: [
                     @foreach ($agendas as $agendas)
