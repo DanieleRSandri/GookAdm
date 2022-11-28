@@ -21,7 +21,6 @@
                         <div class="small-box bg-info">
                             <div class="inner">
                                   {{-- <h2>{{ $agendas->count() }}</h2>  --}}
-
                                 <p>Total de Agendamentos</p>
                             </div>
                             <div class="icon">

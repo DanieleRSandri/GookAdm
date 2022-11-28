@@ -7,11 +7,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-    // Administrador
-    // Route::group(['prefix' => 'Administrador', 'where' => ['id' => '[0-9]+']], function () {
+    Route::get('/home', 'App\Http\Controllers\HomeController@index');
+    // // Administrador
+    // Route::group(['prefix'=>'Administrador','where'=>['id'=>'[0-9]+']], function(){
 
         Route::group(['prefix' => 'locais', 'where' => ['id' => '[0-9]+']], function () {
             Route::get('',             ['as' => 'locais',           'uses' => 'App\Http\Controllers\LocaisController@index']);

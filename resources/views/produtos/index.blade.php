@@ -1,4 +1,42 @@
-﻿@extends('layouts.default')
+﻿@extends('adminlte::page')
+
+@section('plugins.Sweetalert2', true)
+<script>
+    function ConfirmaExclusao(id) {
+        swal.fire({
+            title: 'Confirma a exclusão?',
+            text: "Esta ação não poderá ser revertida!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, excluir!',
+            cancelButtonText: 'Cancelar!',
+            closeOnConfirm: false,
+        }).then(function(isConfirm) {
+            if (isConfirm.value) {
+                $.get('/' + "produtos" + '/' + id + '/destroy', function(data) {
+                    //success data
+                    console.log(data.status);
+                    if (data.status == 200) {
+                        swal.fire(
+                            'Deletado!',
+                            'Exclusão confirmada.',
+                            'success'
+                        ).then(function(isConfirm) {
+                            window.location.reload();
+                        });
+                    } else
+                        swal.fire(
+                            'Erro!',
+                            'Ocorreram erros na exclusão. Entre em contato com o suporte.',
+                            'error'
+                        );
+                });
+            }
+        })
+    }
+</script>
 
 @section('content')
     <div style="text-align:center">
@@ -45,7 +83,4 @@
         <a class="btn btn-outline-primary" href="{{ route('produtos.create') }}">Novo Produto</a>
     </div>
 
-@stop
-@section('table-delete')
-    "produtos"
 @stop
