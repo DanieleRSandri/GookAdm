@@ -85,4 +85,12 @@
     <div class="form-group" style="text-align:center">
         <a class="btn btn-outline-primary" href="{{ route('quadras.create') }}">Nova Quadra</a>
     </div>
+
+    @can('Usuario')
+        <script>
+            alert('Você não tem permissão para acessar essa página!')
+            window.location = "/home";
+        </script>
+    @endcan
+
 @stop

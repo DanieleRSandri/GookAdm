@@ -80,4 +80,13 @@
         <a class="btn btn-outline-primary" href="{{ route('usuarios.create') }}">Novo Usuario</a>
     </div>
 
+    @can('Usuario')
+<script>
+    alert('Você não tem permissão para acessar essa página!')
+    window.location= "/home";
+</script>
+@endcan
+
 @stop
+
+

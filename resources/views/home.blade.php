@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
-    <h4 style="padding: 15px; text-align: center">Bem Vindo, {{ Auth::user()->name }}.</h4>
+    <h4 style="padding: 15px; text-align: center">Bem Vindo, {{ Auth::user()->name }}!</h4>
     @can('Administrador')
         <section class="content">
             <div class="container-fluid">
@@ -20,7 +20,8 @@
 
                         <div class="small-box bg-info">
                             <div class="inner">
-                                  {{-- <h2>{{ $agendas->count() }}</h2>  --}}
+
+                                <h2>{{ $agendas->count() }}</h2>
                                 <p>Total de Agendamentos</p>
                             </div>
                             <div class="icon">
@@ -34,26 +35,28 @@
 
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                {{-- <h2>{{ $clientes->count() }}</h2>  --}}
+                                <h2>{{ $clientes->count() }}</h2>
 
                                 <p>Total de Clientes</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-stalker"></i>
+                                <i class="ion-android-contacts"></i>
+                                
                             </div>
                             <a href="{{ route('clientes') }}" class="small-box-footer">Listar Clientes <i
-                                    class="fas fa-arrow-circle-right" ></i></a>
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
 
                     <div class="col-lg-6 col-6">
                         <div class="small-box bg-success">
                             <div class="inner">
-                                 {{-- <h2>{{ $quadras->count() }}</h2>  --}}
+                                <h2>{{ $quadras->count() }}</h2>
                                 <p>Total de Quadras</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-trophy"></i>
+                                <i class="ion ion-ios-football"></i>
+                           
                             </div>
                             <a href="{{ route('quadras') }}" class="small-box-footer">Listar Quadras <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -62,17 +65,17 @@
 
                     <div class="col-lg-6 col-6">
 
-                        <div class="small-box bg-warning">
+                        <div class="small-box bg-secondary">
                             <div class="inner">
-                                {{-- <h2>{{ $usuarios->count() }}</h2>  --}}
+                                <h2>{{ $usuarios->count() }}</h2>
 
                                 <p>Total de Usuarios</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person"></i>
+                                <i class="ion ion-person-stalker"></i>
                             </div>
                             <a href="{{ route('usuarios') }}" class="small-box-footer">Listar Usuários <i
-                                    class="fas fa-arrow-circle-right" ></i></a>
+                                    class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -87,7 +90,7 @@
                     <div class="col-lg-6 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
-                                {{-- <h2>{{ $agendas->count() }}</h2>  --}}
+                                <h2>{{ $agendas->count() }}</h2>
 
                                 <p>Total de Agendamentos</p>
                             </div>
@@ -102,12 +105,12 @@
                     <div class="col-lg-6 col-6">
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                {{-- <h2>{{ $clientes->count() }}</h2>  --}}
+                                <h2>{{ $clientes->count() }}</h2>
 
                                 <p>Total de Clientes</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-stalker"></i>
+                                <i class="ion-android-contacts"></i>
                             </div>
                             <a href="{{ route('clientes') }}" class="small-box-footer">Listar Clientes <i
                                     class="fas fa-arrow-circle-right"></i></a>
@@ -115,11 +118,6 @@
                     </div>
                 </div>
 
-               
-                
         </section>
     @endcan
-
-
-
 @stop

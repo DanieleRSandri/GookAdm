@@ -19,7 +19,7 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function agendamentosSemanal()
@@ -34,7 +34,7 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function agendamentosMensal()
@@ -49,7 +49,7 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function agendamentosDisponiveis()
@@ -60,7 +60,7 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function agendamentosAgendado()
@@ -71,7 +71,7 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function agendamentosCancelado()
@@ -82,7 +82,7 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function agendamentosNaoCompareceu()
@@ -93,14 +93,17 @@ class RelatoriosController extends Controller
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
             return $pdf->setPaper('a4')->download('Agendamentos.pdf');
         }
-        return  '<script> alert ("Nenhuma informação encontrada!"); location.href=("http://127.0.0.1:8000/home")</script>';
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 
     public function cliente()
     {
         $clientes = Cliente::orderBy('nome')->get();
 
-        $pdf = PDF::loadView('pdf/cliente', compact('clientes'));
-        return $pdf->setPaper('a4')->download('Clientes.pdf');
+        if ($clientes->count() > 0) {
+            $pdf = PDF::loadView('pdf/cliente', compact('clientes'));
+            return $pdf->setPaper('a4')->download('Clientes.pdf');
+        }
+        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }
 }

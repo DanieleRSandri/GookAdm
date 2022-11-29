@@ -4,7 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
 <script>
-    $(document).ready(function($){
+    $(document).ready(function($) {
         $('#cnpj').mask('00.000.000/0000-00');
         $('#phone').mask('(00) 00000-0000');
     });
@@ -37,12 +37,12 @@
 
     <div class="form-group">
         {!! Form::label('telefone', 'Telefone:') !!}
-        {!! Form::text('telefone', $local->telefone, ['class' => 'form-control', 'require', 'id'=>'phone']) !!}
+        {!! Form::text('telefone', $local->telefone, ['class' => 'form-control', 'require', 'id' => 'phone']) !!}
     </div>
 
     <div class="form-group">
         {!! Form::label('cnpj', 'CNPJ:') !!}
-        {!! Form::text('cnpj', $local->cnpj, ['class' => 'form-control', 'require', 'id'=>'cnpj']) !!}
+        {!! Form::text('cnpj', $local->cnpj, ['class' => 'form-control', 'require', 'id' => 'cnpj']) !!}
     </div>
 
     <div class="form-group" style="text-align:center">
@@ -52,5 +52,12 @@
     </div>
 
     {!! Form::close() !!}
+
+    @can('Usuario')
+        <script>
+            alert('Você não tem permissão para acessar essa página!')
+            window.location = "/home";
+        </script>
+    @endcan
 
 @stop

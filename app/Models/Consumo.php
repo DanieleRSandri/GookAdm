@@ -18,6 +18,6 @@ class Consumo extends Model
 
     public function consumoProdutos()
     {
-        return $this->hasMany("App\Models\ConsumoProduto", 'id');
+        return $this->hasMany("App\Models\ConsumoProduto", 'id_consumo');
     }
 }

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Quadra;
+use App\Models\Cliente;
+use App\Models\Agenda;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $agendas = Agenda::all();
+        $clientes = Cliente::all();
+        $quadras = Quadra::all();
+        $usuarios = User::all();
+        return view('home', ['agendas' => $agendas, 'clientes' => $clientes, 'quadras' => $quadras, 'usuarios' => $usuarios]);
     }
 }

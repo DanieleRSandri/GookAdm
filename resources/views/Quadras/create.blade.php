@@ -4,10 +4,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 
 <script>
-    $(document).ready(function($){
-        $('#money').mask("#.##0.00", { reverse: true });
+    $(document).ready(function($) {
+        $('#money').mask("#.##0.00", {
+            reverse: true
+        });
     });
-
 </script>
 
 @section('content')
@@ -37,7 +38,7 @@
 
     <div class="form-group">
         {!! Form::label('valorTempo', 'Valor Tempo:') !!}
-        {!! Form::text('valorTempo', null, ['class' => 'form-control', 'require', 'id'=>'money']) !!}
+        {!! Form::text('valorTempo', null, ['class' => 'form-control', 'require', 'id' => 'money']) !!}
     </div>
 
     <div class="form-group">
@@ -56,5 +57,12 @@
         <a class="btn btn-outline-danger" href="{{ route('quadras') }}">Voltar</a>
     </div>
     {!! Form::close() !!}
+
+    @can('Usuario')
+        <script>
+            alert('Você não tem permissão para acessar essa página!')
+            window.location = "/home";
+        </script>
+    @endcan
 
 @stop

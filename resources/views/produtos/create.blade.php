@@ -32,5 +32,10 @@
     </div>
 
     {!! Form::close() !!}
-
+    @can('Usuario')
+        <script>
+            alert('Você não tem permissão para acessar essa página!')
+            window.location = "/home";
+        </script>
+    @endcan
 @stop

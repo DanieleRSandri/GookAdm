@@ -32,7 +32,10 @@
 
     <div class="form-group">
         {!! Form::label('tipoUsuario', 'Tipo Usuário:') !!}
-        {!! Form::select('tipoUsuario', ['Administrador' => 'Administrador', 'Usuario' => 'Usuario'], 'Usuario', ['class' => 'form-control','require',]) !!}
+        {!! Form::select('tipoUsuario', ['Administrador' => 'Administrador', 'Usuario' => 'Usuario'], 'Usuario', [
+            'class' => 'form-control',
+            'require',
+        ]) !!}
     </div>
 
     <div class="form-group" style="text-align:center">
@@ -41,5 +44,12 @@
         <a class="btn btn-outline-danger" href="{{ route('usuarios') }}">Voltar</a>
     </div>
     {!! Form::close() !!}
+
+    @can('Usuario')
+        <script>
+            alert('Você não tem permissão para acessar essa página!')
+            window.location = "/home";
+        </script>
+    @endcan
 
 @stop
