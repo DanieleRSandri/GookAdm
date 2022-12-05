@@ -15,9 +15,9 @@
 </script>
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Editando Quadra: {{ $quadra->descricao }}</h4>
-    </div>
+    <br>
+    <h4 style="text-align:center">Editando Quadra: {{ $quadra->descricao }}</h4>
+
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)

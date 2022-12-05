@@ -5,95 +5,46 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\Cliente;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 
 
 class RelatoriosController extends Controller
 {
-    public function agendamentosDiario()
+    public function index()
     {
-        $hoje = date("Y/m/d");
-        // dd($hoje);
-        $agendas = Agenda::where("data", $hoje)->get();
-
-        if ($agendas->count() > 0) {
-            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
-        }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
+        return view('relatorio.index');
     }
 
-    public function agendamentosSemanal()
+
+    public function agendamentos(Request $request)
     {
-        $sete = date("Y/m/d", strtotime(date("Y-m-d") . "-7days"));
+        $data_inicial = $request->get('data_inicial');
+        $data_Final = $request->get('data_Final');
+        $status = $request->get('status');
 
-        $hoje = date("Y/m/d");
 
-        $agendas = Agenda::whereBetween("data", [$sete, $hoje])->orderBy("data")->get();
+        if (strtotime($data_inicial) > strtotime($data_Final))
 
+            return back()->withErrors(['error' => ['A data inicial é maior que a data final!']]);
+
+        else
+
+            if ($status == 'Todos')
+            $agendas = Agenda::whereIn("status", ['Disponível', 'Reservado', 'Cancelado', 'Não Compareceu'])
+                ->whereBetween("data", [$data_inicial, $data_Final])->orderBy('data')->orderBy('status')->get();
+        else
+            $agendas = Agenda::where("status", $status)
+                ->whereBetween("data", [$data_inicial, $data_Final])->orderBy('data')->get();
+
+
+        // dd($agendas->count());
         if ($agendas->count() > 0) {
+
             $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
+            // return $pdf->setPaper('a4', 'landscape')->stream('Agendamentos.pdf');
+            return $pdf->setPaper('a4', 'landscape')->download('Agendamentos.pdf');
         }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
-    }
-
-    public function agendamentosMensal()
-    {
-        $trinta = date("Y/m/d", strtotime(date("Y-m-d") . "-30days"));
-
-        $hoje = date("Y/m/d");
-
-        $agendas = Agenda::whereBetween("data", [$trinta, $hoje])->orderBy("data")->get();
-
-        if ($agendas->count() > 0) {
-            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
-        }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
-    }
-
-    public function agendamentosDisponiveis()
-    {
-        $agendas = Agenda::where("status", 'Disponivel')->get();
-
-        if ($agendas->count() > 0) {
-            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
-        }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
-    }
-
-    public function agendamentosAgendado()
-    {
-        $agendas = Agenda::where("status", 'Agendado')->get();
-
-        if ($agendas->count() > 0) {
-            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
-        }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
-    }
-
-    public function agendamentosCancelado()
-    {
-        $agendas = Agenda::where("status", 'Cancelado')->get();
-
-        if ($agendas->count() > 0) {
-            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
-        }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
-    }
-
-    public function agendamentosNaoCompareceu()
-    {
-        $agendas = Agenda::where("status", 'NaoCompareceu')->get();
-
-        if ($agendas->count() > 0) {
-            $pdf = PDF::loadView('pdf/agenda', compact('agendas'));
-            return $pdf->setPaper('a4')->download('Agendamentos.pdf');
-        }
-        return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
+        return back()->withErrors(['error' => ['Nenhuma agendamento encontado!!']]);
     }
 
     public function cliente()
@@ -102,7 +53,7 @@ class RelatoriosController extends Controller
 
         if ($clientes->count() > 0) {
             $pdf = PDF::loadView('pdf/cliente', compact('clientes'));
-            return $pdf->setPaper('a4')->download('Clientes.pdf');
+            return $pdf->setPaper('a4', 'landscape')->download('Clientes.pdf');
         }
         return '<script>alert("Nenhuma informação encontrada!!");window.location= "/home";</script>';
     }

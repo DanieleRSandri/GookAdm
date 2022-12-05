@@ -1,9 +1,10 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Novo Usuário</h4>
-    </div>
+
+<br>
+<h4 style="text-align:center">Novo Usuário</h4>
+
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)

@@ -39,9 +39,9 @@
 </script>
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Listagem de Clientes</h4>
-    </div>
+    <br>
+    <h4 style="text-align:center">Listagem de Clientes</h4>
+
     {!! Form::open(['name' => 'form_name', 'route' => 'clientes']) !!}
     <div calss="sidebar-form">
         <div class="input-group">
@@ -69,7 +69,7 @@
             @foreach ($clientes as $cliente)
                 <tr>
                     <td>{{ $cliente->nome }}</td>
-                    <td>{{ $cliente->cpf }}</td>
+                    <td>{{ \Illuminate\Support\Str::limit($cliente->cpf, $limit = 3, $end = '.***.***-**') }}</td>
                     <td>{{ $cliente->telefone }}</td>
                     <td>{{ $cliente->endereco }}</td>
                     <td>

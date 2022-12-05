@@ -11,9 +11,9 @@
 </script>
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Novo Local</h4>
-    </div>
+    <br>
+<h4 style="text-align:center">Novo Local</h4>
+
 
     @if ($errors->any())
         <ul class='alert alert-danger'>

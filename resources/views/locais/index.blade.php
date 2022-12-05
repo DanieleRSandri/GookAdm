@@ -39,9 +39,8 @@
 </script>
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Listagem de Locais</h4>
-    </div>
+    <br>
+<h4 style="text-align:center">Listagem de Local</h4>
 
     <table class="table table-striped">
         <thead>

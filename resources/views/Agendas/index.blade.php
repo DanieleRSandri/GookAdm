@@ -1,6 +1,6 @@
 ﻿@extends('adminlte::page')
 @section('content')
-    <h1 style="padding-top: 15px; text-align: center">Agendamentos</h1>
+
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -11,12 +11,14 @@
     <script>
         function getColor($status) {
             $eventColor = '';
-            if ($status == 'Disponivel') {
+            if ($status == 'Disponível') {
                 $eventColor = '#006400';
-            } else if ($status == 'Agendado') {
+            } else if ($status == 'Reservado') {
                 $eventColor = '#FFD700';
-            } else if ($status == 'NaoCompareceu') {
+            } else if ($status == 'Não Compareceu') {
                 $eventColor = '#778899';
+            } else if ($status == 'Não Utilizado') {
+                $eventColor = '#363636';
             } else {
                 $eventColor = '#FF0000';
             }
@@ -44,7 +46,7 @@
                         {
                             id: '{{ $agendas->id }}',
                             title: '{{ $agendas->status }}',
-                            start: '{{ $agendas->data }}T{{ $agendas->horario_inicio }}',
+                            start: '{{ $agendas->data }}T{{ $agendas->horario_inicio }}',                          
                             end: '{{ $agendas->data }}T{{ $agendas->horario_final }}',
                             extendedProps: {
                                 cliente: '{{ isset($agendas->id_cliente) ? $agendas->cliente->nome : '-' }}',

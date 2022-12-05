@@ -39,9 +39,9 @@
 </script>
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Listagem de Quadras</h4>
-    </div>
+
+    <br>
+    <h4 style="text-align:center">Listagem de Quadras</h4>
 
     {!! Form::open(['name' => 'form_name', 'route' => 'quadras']) !!}
     <div calss="sidebar-form">

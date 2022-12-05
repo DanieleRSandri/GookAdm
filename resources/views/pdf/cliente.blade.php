@@ -23,7 +23,7 @@
             @foreach ($clientes as $cliente)
                 <tr>
                     <td>{{ $cliente->nome }}</td>
-                    <td>{{ $cliente->cpf }}</td>
+                    <td>{{ \Illuminate\Support\Str::limit($cliente->cpf, $limit = 3, $end = '.***.***-**') }}</td>
                     <td>{{ $cliente->telefone }}</td>
                 </tr>
             @endforeach

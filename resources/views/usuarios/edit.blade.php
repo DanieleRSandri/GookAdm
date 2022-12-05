@@ -1,9 +1,10 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
-    <div style="text-align:center">
-        <h4>Editando Usuário:{{ $user->name }} </h4>
-    </div>
+
+    <br>
+    <h4 style="text-align:center">Editando Usuário:{{ $user->name }} </h4>
+
     @if ($errors->any())
         <ul class='alert alert-danger'>
             @foreach ($errors->all() as $error)
@@ -25,10 +26,6 @@
         {!! Form::text('email', $user->email, ['class' => 'form-control', 'require']) !!}
     </div>
 
-    <div class="form-group">
-        {!! Form::label('password', 'Senha:') !!}
-        {!! Form::text('password', $user->password, ['class' => 'form-control', 'require']) !!}
-    </div>
 
     <div class="form-group">
         {!! Form::label('tipoUsuario', 'Tipo Usuário:') !!}

@@ -12,6 +12,7 @@
         "igorescobar/jquery-mask-plugin": "^1.14",
         "jeroennoten/laravel-adminlte": "^3.8",
         "laravel/framework": "^8.75",
+        "laravel/helpers": "^1.5",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",

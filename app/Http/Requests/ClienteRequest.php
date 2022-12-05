@@ -27,7 +27,7 @@ class ClienteRequest extends FormRequest
             'nome' => 'required|min:5',
             'endereco' => 'required',
             'telefone' => 'required',
-            'cpf' => 'required',
+            'cpf' => 'required'
         ];
     }
 
@@ -37,7 +37,7 @@ class ClienteRequest extends FormRequest
             'nome.required' => 'O nome deve ser informado.',
             'endereco.required' => 'O endereço deve ser informado.',
             'telefone.required' => 'O telefone deve ser informado.',
-            'cpf.required' => 'O CPF deve ser informado.',
+            'cpf.required' => 'O CPF deve ser informado.'
 
         ];
     }

@@ -14,7 +14,7 @@ class AgendasController extends Controller
             $horario = Agenda::where("data", $data)
                 ->where('id_quadra', $id_quadra)
                 ->where(function ($query) {
-                    $query->where('status', 'Agendado')->orWhere('status', 'Disponivel');
+                    $query->where('status', 'Reservado')->orWhere('status', 'Disponível');
                 })
                 ->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
                 ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
@@ -49,7 +49,7 @@ class AgendasController extends Controller
                 $horario = Agenda::where("data", $data)
                     ->where('id_quadra', $id_quadra)
                     ->where(function ($query) {
-                        $query->where('status', 'Agendado')->orWhere('status', 'Disponivel');
+                        $query->where('status', 'Reservado')->orWhere('status', 'Disponível');
                     })
                     ->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
                     ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
@@ -103,7 +103,7 @@ class AgendasController extends Controller
             return redirect('agendas');
         else :
             return redirect()->route('agendas.create', ['id' => $request->id, 'data' => $request->data, 'horario_inicio' => $request->horario_inicio, 'horario_final' => $request->horario_final])
-                ->withErrors(['error' => 'Ja existe um agendamento entre os horarios informados.']);
+                ->withErrors(['error' => 'Já existe um agendamento entre os horários informados.']);
         endif;
     }
 
@@ -123,6 +123,8 @@ class AgendasController extends Controller
     public function edit($id)
     {
         $agenda = Agenda::find($id);
+        $agenda['data']= Carbon::parse( $agenda['data'])->format('d-m-Y');
+ 
         return view('agendas.edit', compact('agenda'));
     }
 
@@ -142,7 +144,7 @@ class AgendasController extends Controller
             return redirect('agendas');
         else :
             return redirect()->route('agendas.edit', ['id' => $request->id, 'data' => $request->data, 'horario_inicio' => $request->horario_inicio, 'horario_final' => $request->horario_final])
-                ->withErrors(['error' => 'Ja existe um agendamento entre os horarios informados.']);
+                ->withErrors(['error' => 'Já existe um agendamento entre os horários informados.']);
         endif;
     }
 }

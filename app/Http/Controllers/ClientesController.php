@@ -56,10 +56,21 @@ class ClientesController extends Controller
 
     public function store(ClienteRequest $request)
     {
-        $novo_cliente = $request->all();
-        Cliente::create($novo_cliente);
 
-        return redirect('clientes');
+        try {
+            $novo_cliente = $request->all();
+            Cliente::create($novo_cliente);
+    
+            return redirect('clientes');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('clientes.create', ['nome' => $request->nome, 'cpf' => $request->cpf, 'endereco' => $request->endereco, 'telefone' => $request->telefone])
+            ->withErrors(['error' => 'Cliente já cadastrado com esse CPF.']);
+
+        } catch (\PDOException $e) {
+            return redirect()->route('clientes.create', ['nome' => $request->nome, 'cpf' => $request->cpf, 'endereco' => $request->endereco, 'telefone' => $request->telefone])
+            ->withErrors(['error' => 'Cliente já cadastrado com esse CPF.']);
+ 
+        }     
     }
 
     public function destroy($id)

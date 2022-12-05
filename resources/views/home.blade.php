@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
 
-    <h4 style="padding: 15px; text-align: center">Bem Vindo, {{ Auth::user()->name }}!</h4>
+    <h4 style="padding: 15px; text-align: center">Bem Vindo(a), {{ Auth::user()->name }}!</h4>
     @can('Administrador')
         <section class="content">
             <div class="container-fluid">

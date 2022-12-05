@@ -315,7 +315,7 @@ return [
             'can' => ['Administrador'],
         ],
         [
-            'text' => 'Usuarios',
+            'text' => 'Usuários',
             'url'  => 'http://127.0.0.1:8000/usuarios',
             'icon' => 'fas fa-users-cog',
             'can' => ['Administrador'],
@@ -338,49 +338,13 @@ return [
             'can' => ['Administrador', 'Usuario'],
             'submenu' => [
                 [
-                    'text' => 'Relatório de Agendamento Diario',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDiario',
+                    'text' => 'Agendamentos',
+                    'url'  => 'http://127.0.0.1:8000/relatorios',
                     'icon'    => 'fas fa-file-chart-line',
                     'can' => ['Administrador', 'Usuario'],
                 ],
                 [
-                    'text' => 'Relatório de Agendamento Semanal',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosSemanal',                    
-                    'icon'    => 'fas fa-file-chart-line',
-                    'can' => ['Administrador', 'Usuario'],
-                ],
-                [
-                    'text' => 'Relatório de Agendamento Mensal',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosMensal',
-                    'icon'    => 'fas fa-file-chart-line',
-                    'can' => ['Administrador', 'Usuario'],
-                ],
-                [
-                    'text' => 'Relatório de Agendamentos Disponiveis',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosDisponiveis',
-                    'icon'    => 'fas fa-file-chart-line',
-                    'can' => ['Administrador', 'Usuario'],
-                ],
-                [
-                    'text' => 'Relatório de Agendamentos Agendados',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosAgendado',
-                    'icon'    => 'fas fa-file-chart-line',
-                    'can' => ['Administrador', 'Usuario'],
-                ],
-                [
-                    'text' => 'Relatório de Agendamentos Cancelado',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosCancelado',
-                    'icon'    => 'fas fa-file-chart-line',
-                    'can' => ['Administrador', 'Usuario'],
-                ],
-                [
-                    'text' => 'Relatório de Agendamentos de clientes que não compareceu',
-                    'url'  => 'http://127.0.0.1:8000/relatorios/agendamentosNaoCompareceu',
-                    'icon'    => 'fas fa-file-chart-line',
-                    'can' => ['Administrador', 'Usuario'],
-                ],
-                [
-                    'text' => 'Relatório de Clientes',
+                    'text' => 'Clientes',
                     'url'  => 'http://127.0.0.1:8000/relatorios/clientes',     
                     'icon'    => 'fas fa-file-chart-line',
                     'can' => ['Administrador', 'Usuario'],

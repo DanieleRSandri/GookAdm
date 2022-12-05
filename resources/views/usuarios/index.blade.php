@@ -38,7 +38,10 @@
     }
 </script>
 @section('content')
-    <h4 style="padding: 15px; text-align: center">Listagem de Usuários.</h4>
+
+    <br>
+    <h4 style="text-align:center">Listagem de Usuários </h4>
+
     {!! Form::open(['name' => 'form_name', 'route' => 'usuarios']) !!}
     <div calss="sidebar-form">
         <div class="input-group">

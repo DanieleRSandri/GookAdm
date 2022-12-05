@@ -73,14 +73,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'relatorios', 'where' => ['id' => '[0-9]+']], function () {
-        Route::get('agendamentosDiario',  ['as' => 'relatorios.agendamentosDiario',  'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosDiario']);
-        Route::get('agendamentosSemanal', ['as' => 'relatorios.agendamentosSemanal', 'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosSemanal']);
-        Route::get('agendamentosMensal',  ['as' => 'relatorios.agendamentosMensal',  'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosMensal']);
-        Route::post('agendamentos',       ['as' => 'relatorios.agendamentos',        'uses' => 'App\Http\Controllers\RelatoriosController@agendamentos']);
-        Route::get('agendamentosDisponiveis',  ['as' => 'relatorios.agendamentosDisponiveis',  'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosDisponiveis']);
-        Route::get('agendamentosAgendado',  ['as' => 'relatorios.agendamentosAgendado',  'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosAgendado']);
-        Route::get('agendamentosCancelado',  ['as' => 'relatorios.agendamentosCancelado',  'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosCancelado']);
-        Route::get('agendamentosNaoCompareceu',  ['as' => 'relatorios.agendamentosNaoCompareceu',  'uses' => 'App\Http\Controllers\RelatoriosController@agendamentosNaoCompareceu']);
+        Route::get('',             ['as' => 'relatorios',          'uses' => 'App\Http\Controllers\RelatoriosController@index']);
+        Route::any('agendamentos',             ['as' => 'relatorios.agendamentos',   'uses' => "\App\Http\Controllers\RelatoriosController@agendamentos"]);
         Route::get('clientes',            ['as' => 'relatorios.cliente',             'uses' => 'App\Http\Controllers\RelatoriosController@cliente']);
     });
 });
