@@ -39,6 +39,7 @@
                 'Reservado' => 'Reservado',
                 'Cancelado' => 'Cancelado',
                 'Não Compareceu' => 'Não Compareceu',
+                'Não Utilizado' => 'Não Utilizado'
             ],
             $agenda->status,
             ['class' => 'form-control', 'require'],

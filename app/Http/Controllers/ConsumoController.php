@@ -43,24 +43,24 @@ class ConsumoController extends Controller
 
     public function edit(Request $request)
     {
-        $user = Consumo::find(Crypt::decrypt($request->get('id')));
-        return view('consumos.edit', compact('consumos'));
+        $consumo = Consumo::find(Crypt::decrypt($request->get('id')));
+        return view('consumos.edit', compact('consumo'));
     }
 
-
-    public function update(Request $request, $id)
+      public function update(Request $request, $id)
     {
         Consumo::find($id)->update($request->all());
         return redirect('consumos');
     }
 
-
     public function destroy($id)
     {
         try {
+            ConsumoProduto::where('id_consumo',  $id)->delete();
             Consumo::find($id)->delete();
+
             $ret = array('status' => 200, 'msg' => "null");
-        } catch (\Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException  $e) {
             $ret = array('status' => 500, 'msg' => $e->getMessage());
         } catch (\PDOException $e) {
             $ret = array('status' => 500, 'msg' => $e->getMessage());

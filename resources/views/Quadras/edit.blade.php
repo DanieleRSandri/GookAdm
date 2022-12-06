@@ -2,15 +2,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/plentz/jquery-maskmoney@master/dist/jquery.maskMoney.min.js"></script>
 
 <script>
     $(document).ready(function($) {
-        // $('#money').mask('000.00');
+        $("#money").maskMoney({
+         decimal: ".",
+         thousands: ","
+     });
 
-        // $('#money').mask("#.##0,00");
-        $('#money').mask("#.##0.00", {
-            reverse: true
-        });
     });
 </script>
 

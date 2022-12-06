@@ -1,27 +1,26 @@
 ﻿@extends('adminlte::page')
 
 @section('content')
+<br>
+<h4 style="text-align:center">Editando Consumo: {{ $consumo->id }}</h4>
     <div class="card">
-        <div class="card-header" style="background: lightgrey">
-            <h3>Novo Consumo</h3>
-        </div>
-
+  
         <div class="card-body">
-            {!! Form::open(['route' => 'consumos.store']) !!}
+            {!! Form::open(['route' => ['consumos.update', 'id' => $consumo->id], 'method' => 'put']) !!}
 
             <div class="form-group">
                 {!! Form::label('id_cliente', 'Cliente:') !!}
                 {!! Form::select(
                     'id_cliente',
                     \App\Models\Cliente::orderBy('nome')->pluck('nome', 'id')->toArray(),
-                    null,
+                    $consumo->id_cliente,
                     ['class' => 'form-control', 'required'],
                 ) !!}
             </div>
 
             <div class="form-group">
                 {!! Form::label('valorTotal', 'Valor Total:') !!}
-                {!! Form::text('valorTotal', null, ['class' => 'form-control', 'require']) !!}
+                {!! Form::text('valorTotal', $consumo->valorTotal, ['class' => 'form-control', 'require']) !!}
             </div>
             <hr />
 
@@ -35,7 +34,7 @@
             <hr />
 
             <div class="form-group" style="text-align:center">
-                {!! Form::submit('Criar Consumo', ['class' => 'btn btn-outline-success']) !!}
+                {!! Form::submit('Editar Consumo', ['class' => 'btn btn-outline-success']) !!}
                 <a class="btn btn-outline-danger" href="{{ route('consumos') }}">Voltar</a>
             </div>
 
@@ -48,7 +47,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            var wrapper = $(".input_fields_wrap");
+            var wrapper = $(".input_fields_wrap");s
             var add_button = $(".add_field_button");
             var x = 0;
             $(add_button).click(function(e) {
@@ -57,7 +56,7 @@
                     '<div><div style="width:94%; float:left" id="ator">{!! Form::select(
                         'produtos[]',
                         \App\Models\Produto::orderBy('descricao')->pluck('descricao', 'id')->toArray(),
-                        null,
+                        $consumo->id_produto,
                         ['class' => 'form-control', 'required', 'placeholder' => 'Selecione um Produto'],
                     ) !!}</div><button type="button" class="remove_field btn btn-danger btn-circle"><i class="fa fa-times"></button></div>';
                 $(wrapper).append(newField);

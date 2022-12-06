@@ -10,7 +10,7 @@ class AgendasController extends Controller
 {
     public function VerificaHorario($data, $horaInicial, $horaFinal, $status, $id_quadra)
     {
-        if ($status != 'Cancelado') {
+        if ($status != 'Cancelado' || $status != 'Não Utilizado' ) {
             $horario = Agenda::where("data", $data)
                 ->where('id_quadra', $id_quadra)
                 ->where(function ($query) {
@@ -26,7 +26,7 @@ class AgendasController extends Controller
             $horario = Agenda::where("data", $data)
 
                 ->where(function ($query) {
-                    $query->where('status', 'Cancelado');
+                    $query->where('status', 'Cancelado')->orWhere('status', 'Não Utilizado');
                 })->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
                 ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
 
@@ -45,7 +45,7 @@ class AgendasController extends Controller
             ->where("horario_final", $horaFinal);
 
         if ($agenda->count() === 0) {
-            if ($status != 'Cancelado') {
+            if ($status != 'Cancelado' || $status != 'Não Utilizado' ) {
                 $horario = Agenda::where("data", $data)
                     ->where('id_quadra', $id_quadra)
                     ->where(function ($query) {
@@ -60,7 +60,7 @@ class AgendasController extends Controller
             } else {
                 $horario = Agenda::where("data", $data)
                     ->where(function ($query) {
-                        $query->where('status', 'Cancelado');
+                        $query->where('status', 'Cancelado')->orWhere('status', 'Não Utilizado');
                     })->whereBetween("horario_inicio", [$horaInicial, $horaFinal])
                     ->whereBetween("horario_final", [$horaInicial, $horaFinal]);
 
@@ -89,9 +89,9 @@ class AgendasController extends Controller
 
     public function store(AgendaRequest $request)
     {
+        $request['data'] = Carbon::parse($request['data'])->format('Y-m-d');
         $novo_agendamento = $request->all();
 
-        $novo_agendamento['data'] = Carbon::parse($novo_agendamento['data'])->format('Y-m-d');
         if ($this->VerificaHorario(
             $novo_agendamento['data'],
             $novo_agendamento['horario_inicio'],
@@ -130,8 +130,9 @@ class AgendasController extends Controller
 
     public function update(AgendaRequest $request, $id)
     {
+        $request['data'] = Carbon::parse($request['data'])->format('Y-m-d');
         $agendamento = $request->all();
-        $agendamento['data'] = Carbon::parse($agendamento['data'])->format('Y-m-d');
+      
         if ($this->VerificaHorarioAgendado(
             $agendamento['data'],
             $agendamento['horario_inicio'],

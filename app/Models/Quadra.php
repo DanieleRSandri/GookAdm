@@ -9,7 +9,7 @@ class Quadra extends Model
 {
     use HasFactory;
     protected $table = 'quadras';
-    protected $fillable = ['nome', 'tipo', 'tempoPartida', 'valorTempo', 'id_local'];
+    protected $fillable = ['nome', 'tipo', 'valorTempo', 'id_local'];
 
     public function local()
     {
