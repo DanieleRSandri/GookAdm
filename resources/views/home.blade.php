@@ -40,7 +40,7 @@
                                 <p>Total de Clientes</p>
                             </div>
                             <div class="icon">
-                                <i class="ion-android-contacts"></i>
+                                <i class="ion ion-person"></i>
                                 
                             </div>
                             <a href="{{ route('clientes') }}" class="small-box-footer">Listar Clientes <i
@@ -110,7 +110,7 @@
                                 <p>Total de Clientes</p>
                             </div>
                             <div class="icon">
-                                <i class="ion-android-contacts"></i>
+                                <i class="ion ion-person"></i>
                             </div>
                             <a href="{{ route('clientes') }}" class="small-box-footer">Listar Clientes <i
                                     class="fas fa-arrow-circle-right"></i></a>

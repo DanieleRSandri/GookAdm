@@ -2,7 +2,7 @@
 
 @section('content')
 
-<br>
+    <br>
 
 
     @if ($errors->any())
@@ -48,12 +48,13 @@
                 'Reservado' => 'Reservado',
                 'Cancelado' => 'Cancelado',
                 'Não Compareceu' => 'Não Compareceu',
+                'Não Utilizado' => 'Não Utilizado',
+                'Utilizado' => 'Utilizado',
             ],
             'Todos',
             ['class' => 'form-control', 'require'],
         ) !!}
     </div>
-
 
     <div class="form-group" style="text-align:center">
         {!! Form::submit('Gerar Relatório', ['class' => 'btn btn-outline-success']) !!}
@@ -63,4 +64,3 @@
     {!! Form::close() !!}
 
 @stop
-

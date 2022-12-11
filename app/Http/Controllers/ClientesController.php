@@ -56,7 +56,6 @@ class ClientesController extends Controller
 
     public function store(ClienteRequest $request)
     {
-
         try {
             $novo_cliente = $request->all();
             Cliente::create($novo_cliente);

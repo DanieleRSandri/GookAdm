@@ -22,16 +22,29 @@
                 {!! Form::label('valorTotal', 'Valor Total:') !!}
                 {!! Form::text('valorTotal', $consumo->valorTotal, ['class' => 'form-control', 'require']) !!}
             </div>
-            <hr />
 
-            <h4>Produtos</h4>
-            <div class="input_fields_wrap"></div>
-            <br>
+            <fieldset>
+                <legend class="legend">Produtos</legend>
+                <table class="table table-stipe table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th colspan="2" style="display: flex; flex-wrap: wrap; flex-direction: column;">
+                            <button class="add_field_button btn-add" title="Adicionar" id="btnAdicionarProduto">Adicionar</button>
+                            </th>
+                        </tr>                        
+                    </thead>
+                    <tbody id='body'>
+                        @foreach ( $consumo->consumoProdutos as $a )
+                        <tr id='tr-produto'>
+<td> {{$a->produtos}}</td>
+                        </tr>  
+                        @endforeach
+                      
 
-            <button style="float:right" class="add_field_button btn btn-outline-secondary">Adicionar Produto</button>
+                    </tbody>
 
-            <br>
-            <hr />
+                </table>
+            </fieldset>
 
             <div class="form-group" style="text-align:center">
                 {!! Form::submit('Editar Consumo', ['class' => 'btn btn-outline-success']) !!}
@@ -42,37 +55,13 @@
 
         </div>
     </div>
-@stop
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            var wrapper = $(".input_fields_wrap");s
-            var add_button = $(".add_field_button");
-            var x = 0;
-            $(add_button).click(function(e) {
-                x++;
-                var newField =
-                    '<div><div style="width:94%; float:left" id="ator">{!! Form::select(
-                        'produtos[]',
-                        \App\Models\Produto::orderBy('descricao')->pluck('descricao', 'id')->toArray(),
-                        $consumo->id_produto,
-                        ['class' => 'form-control', 'required', 'placeholder' => 'Selecione um Produto'],
-                    ) !!}</div><button type="button" class="remove_field btn btn-danger btn-circle"><i class="fa fa-times"></button></div>';
-                $(wrapper).append(newField);
-            });
-            $(wrapper).on("click", ".remove_field", function(e) {
-                e.preventDefault();
-                $(this).parent('div').remove();
-                x--;
-            });
-        })
-    </script>
 
     @can('Usuario')
-        <script>
-            alert('Você não tem permissão para acessar essa página!')
-            window.location = "/home";
-        </script>
-    @endcan
+    <script>
+        alert('Você não tem permissão para acessar essa página!')
+        window.location = "/home";
+    </script>
+@endcan
+
 @stop
+

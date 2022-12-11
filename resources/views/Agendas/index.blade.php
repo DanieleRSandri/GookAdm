@@ -19,6 +19,8 @@
                 $eventColor = '#778899';
             } else if ($status == 'Não Utilizado') {
                 $eventColor = '#363636';
+            } else if ($status == 'Utilizado') {
+                $eventColor = '#008080';
             } else {
                 $eventColor = '#FF0000';
             }

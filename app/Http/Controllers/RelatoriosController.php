@@ -30,7 +30,13 @@ class RelatoriosController extends Controller
         else
 
             if ($status == 'Todos')
-            $agendas = Agenda::whereIn("status", ['Disponível', 'Reservado', 'Cancelado', 'Não Compareceu','Não Utilizado'])
+            $agendas = Agenda::whereIn("status", 
+                                        ['Disponível', 
+                                        'Reservado', 
+                                        'Cancelado', 
+                                        'Não Compareceu',
+                                        'Não Utilizado',
+                                        'Utilizado'])
                 ->whereBetween("data", [$data_inicial, $data_Final])->orderBy('data')->orderBy('status')->get();
         else
             $agendas = Agenda::where("status", $status)
